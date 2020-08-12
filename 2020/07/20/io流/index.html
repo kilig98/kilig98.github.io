@@ -1,0 +1,1814 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="io流, kilig-blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>io流 | kilig-blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.0.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">kilig-blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">kilig-blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">io流</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JAVA-IO%E6%B5%81/">
+                                <span class="chip bg-color">JAVA IO流</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="post-category">
+                                JAVA基本知识
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-20
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.4k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="1、流的概念"><a href="#1、流的概念" class="headerlink" title="1、流的概念"></a>1、流的概念</h1><h2 id="1-1流"><a href="#1-1流" class="headerlink" title="1.1流"></a>1.1流</h2><p>（1）流是一个无结构化的数据组成的序列，流中的数据没有任何格式和含义，只是以字节或字符形式进行流入或流出。</p>
+<p>（2）数据流的流入和流出都是以程序本身作为核心，流入是指数据从外部数据源流入到程序内部；流出是指数据从程序内部向外部流出到数据的目的地。 </p>
+<p>（3）不管是流入还是流出，其数据的流动都是通过一个管道进行的，管道两端分别连接数据源和数据目的地。</p>
+<p>（4）流的本质就是进行数据传输，因此Java根据数据传输的特性将流抽象成各种类，以方便进行数据操作。</p>
+<p><img src="/2020/07/20/io%E6%B5%81/1_1.png" alt="图1.1"></p>
+<h2 id="1-2流的分类"><a href="#1-2流的分类" class="headerlink" title="1.2流的分类"></a>1.2流的分类</h2><ul>
+<li>根据处理数据类型，可以分为字节流和字符流。</li>
+<li>根据数据的流向可以分为输入流和输出流。</li>
+<li>根据处理数据功能，可以分为实体流和装饰流。</li>
+<li>实体流对数据不做任何处理，只完成基本的读写操作。</li>
+<li>装饰流是在实体流的基础上，提供更高级的功能。</li>
+<li>这些流都在java.io包中。</li>
+</ul>
+<h3 id="1-2-1字节流"><a href="#1-2-1字节流" class="headerlink" title="1.2.1字节流"></a>1.2.1字节流</h3><ul>
+<li>在数据传输过程中以字节为单位进行输入和输出。</li>
+<li>适用于传输各种类型的文件或数据。</li>
+<li>在字节输入流中，InputStream 类是所有的输入字节流的父类，它是一个抽象类。</li>
+<li>其子类中的ByteArrayInputStream、FileInputStream 是两种基本的实体流。</li>
+<li>ObjectInputStream 和所有FilterInputStream 的子类都是装饰流。</li>
+<li>在字节输出流中，OutputStream 是所有的输出字节流的父类，它是一个抽象类。</li>
+<li>ByteArrayOutputStream、FileOutputStream 是两种基本的实体流。</li>
+<li>ObjectOutputStream 和所有FilterOutputStream 的子类都是装饰流。</li>
+</ul>
+<p><img src="/2020/07/20/io%E6%B5%81/1_2.png" alt="图1.2"></p>
+<h3 id="1-2-2字符流"><a href="#1-2-2字符流" class="headerlink" title="1.2.2字符流"></a>1.2.2字符流</h3><ul>
+<li>在数据传输过程中以字符为单位进行输入和输出。</li>
+<li>根据字符编码表，一个字符占用两个字节，因此字符流只适用于字符类型数据的处理。</li>
+<li>在字符输入流中，Reader 是所有的输入字符流的父类，它是一个抽象类。</li>
+<li>InputStreamReader 是一个连接字节流和字符流的桥梁，它使用指定的字符集读取字节并转换成字符。</li>
+<li>其FileReader子类可以更方便地读取字符文件，也是常用的Reader流对象。</li>
+<li>在字符输出流中，Writer是所有的输出字符流的父类，也是一个抽象类。</li>
+<li>相对输入流的子类，输出流当中也有相应的输出子类，只是数据传输方向相反。</li>
+<li>这些类有OutputStreamWriter及其子类FileWriter、 CharArrayWriter、StringWriter 、BufferedWriter 、PipedWriter等。</li>
+</ul>
+<p><img src="/2020/07/20/io%E6%B5%81/1_3.png" alt="图1.3"></p>
+<h1 id="2、File类"><a href="#2、File类" class="headerlink" title="2、File类"></a>2、File类</h1><h2 id="2-1文件对象与文件属性"><a href="#2-1文件对象与文件属性" class="headerlink" title="2.1文件对象与文件属性"></a>2.1文件对象与文件属性</h2><p>​    文件用文件类的对象表示，有了文件对象就可以获取文件属性。</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">File(String filename)</td>
+<td align="center">在当前路径下，创建一个名字为filename的文件</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">File(String path,</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">String filename)</td>
+<td align="center">在给定的path路径下，创建一个名字为filename的文件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">String</td>
+<td align="center">getName()</td>
+<td align="center">获取此文件（目录）的名称</td>
+</tr>
+<tr>
+<td align="center">String</td>
+<td align="center">getPath()</td>
+<td align="center">获取路径名字符串</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">length()</td>
+<td align="center">获取文件的长度。如果表示目录，则返回值不确定</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">canRead()</td>
+<td align="center">判断文件是否可读</td>
+</tr>
+<tr>
+<td align="center">String</td>
+<td align="center">getAbsolutePath()</td>
+<td align="center">获取路径名字符串</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">canWrite()</td>
+<td align="center">判断文件是否可写</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">canExecute()</td>
+<td align="center">判断文件是否执行</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">exists()</td>
+<td align="center">判断文件（目录）是否存在</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">isFile()</td>
+<td align="center">判断文件是否是一个标准文件</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">isDirectory()</td>
+<td align="center">判断文件是否是一个目录</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">isHidden()</td>
+<td align="center">判断文件是否是一个隐藏文件</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">lastModified()</td>
+<td align="center">判断文件最后一次被修改的时间</td>
+</tr>
+</tbody></table>
+<h2 id="2-2目录"><a href="#2-2目录" class="headerlink" title="2.2目录"></a>2.2目录</h2><p>​    Java把目录作为一种特殊的文件进行处理，它除了具备文件的基本属性如文件名、所在路径等信息以外，同时也提供了专用于目录的一些操作方法。</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean</td>
+<td align="center">mkdir()</td>
+<td align="center">创建一个目录，并返回创建结果。成功返回true，失败（目录已存在）返回false</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">mkdirs()</td>
+<td align="center">创建一个包括父目录在内的目录。创建所有目录成功返回true，如果失败返回false，但要注意的是有可能部分目录已创建成功</td>
+</tr>
+<tr>
+<td align="center">String[]</td>
+<td align="center">list()</td>
+<td align="center">获取目录下字符串表示形式的文件名和目录名</td>
+</tr>
+<tr>
+<td align="center">String[]</td>
+<td align="center">list(FilenameFilter filter)</td>
+<td align="center">获取满足指定过滤器条件的字符串表示形式的文件名和目录名</td>
+</tr>
+<tr>
+<td align="center">File[]</td>
+<td align="center">listFiles()</td>
+<td align="center">获取目录下文件类型表示形式的文件名和目录名</td>
+</tr>
+<tr>
+<td align="center">File[]</td>
+<td align="center">listFiles(FileFilter filter)</td>
+<td align="center">获取满足指定过滤器文件条件的文件表示形式的文件名和目录名</td>
+</tr>
+<tr>
+<td align="center">File[]</td>
+<td align="center">listFiles(FilenameFliter fliter)</td>
+<td align="center">获取满足指定过滤器路径和文件条件的文件表示形式的文件名和目录名</td>
+</tr>
+</tbody></table>
+<h2 id="2-3文件的操作"><a href="#2-3文件的操作" class="headerlink" title="2.3文件的操作"></a>2.3文件的操作</h2><ol>
+<li><p>创建文件File类的方法：</p>
+<p><code>public boolean createNewFile()</code></p>
+<p><code>File file = new File(“D:\\”,”hello.txt”)</code></p>
+<p><code>file.createNewFile();</code></p>
+</li>
+<li><p>删除文件File类中的方法:</p>
+<p><code>file.delete()</code></p>
+</li>
+<li><p>运行可执行文件</p>
+<p>首先利用Runtime类的静态方法创建一个Runtime对象:</p>
+<p><code>Runtime ec = Runtime.getRuntime();</code></p>
+<p>然后用ec调用方法：</p>
+<p><code>Process exec(String command);</code></p>
+</li>
+</ol>
+<h2 id="2-4-Scanner类与文件"><a href="#2-4-Scanner类与文件" class="headerlink" title="2.4 Scanner类与文件"></a>2.4 Scanner类与文件</h2><p>​    利用Scanner类的对象还可以从文件中读取数据:</p>
+<p>  <code>Scanner input=new Scanner(文件类对象)</code></p>
+<p>​    创建的Scanner类的对象使用read()方法即可从文件中读数据。</p>
+<p>​    读数据时默认以空格作为数据的分隔标记。</p>
+<h1 id="3、字节流和字符流"><a href="#3、字节流和字符流" class="headerlink" title="3、字节流和字符流"></a>3、字节流和字符流</h1><h2 id="3-1字节流"><a href="#3-1字节流" class="headerlink" title="3.1字节流"></a>3.1字节流</h2><p>​    抽象类InputStream和抽象类OutputStream是所有字节流类的根类，其他字节流类都继承自这两个类。</p>
+<h3 id="3-1-1-字节输入流InputStream"><a href="#3-1-1-字节输入流InputStream" class="headerlink" title="3.1.1 字节输入流InputStream"></a>3.1.1 字节输入流InputStream</h3><p>​    字节输入流的作用是从数据输入源（例如从磁盘、网络等）获取字节数据到应用程序（内存）中。</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="center">read()</td>
+<td align="center">从输入流中读取下一个字节，返回读入的字节数据；如果读到末尾，返回-1</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(byte b[])</td>
+<td align="center">从输入流中读取一定数量的字节保存到字节数组中，并返回实际读取的字节数</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(byte b[],int off,</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">int len)</td>
+<td align="center">从输入流中读取最多len个字节，保存到数组b中从off开始的位置，并返回实际读入的字节数；如果off+len 大于b.length，或者off 和len中有一个是负数，那么会抛出IndexOutOfBoundsException异常</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">skip(long n)</td>
+<td align="center">从输入流中跳过并丢弃n个字节，并返回实际跳过的字节数</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">close()</td>
+<td align="center">关闭输入流，释放资源。对流的读取完毕后调用该方法以释放资源</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">available()</td>
+<td align="center">返回此输入流可以读取（或跳过）的估计字节数</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">mark(int readlimit)</td>
+<td align="center">在输入流中标记当前的位置。参数readlimit为标记失效前最多读取的字节数。如果读取的字节数超出此范围则标记失效</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">reset()</td>
+<td align="center">将输入流重新定位到最后一次调用 mark 方法时的位置</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">markSupported()</td>
+<td align="center">测试此输入流是否支持 mark 和 reset 方法。只有带缓存的输入流支持标记功能</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-2-文件字节输入流类FileInputStream"><a href="#3-1-2-文件字节输入流类FileInputStream" class="headerlink" title="3.1.2 文件字节输入流类FileInputStream"></a>3.1.2 文件字节输入流类FileInputStream</h3><p>​    在进行字节输入流操作时，经常使用的是InputStream类的子类FileInputStream，实现简单的文件数据读取。</p>
+<p>​    FileInputStream类的常用构造方法：</p>
+<p><code>public FileInputStream(File file) throws FileNotFoundException</code></p>
+<p><code>public FileInputStream(String name) throws FileNotFoundException</code></p>
+<p>​    通过给定的File对象和文件创建文件字节输入流对象。</p>
+<p>​    在创建输入流时，如果文件不存在或出现其他问题，会抛出FileNotFoundException异常，所以要注意捕获。</p>
+<p><strong>字节输入流读数据步骤：</strong></p>
+<ol>
+<li>设定输入流的数据源</li>
+<li>创建指向这个数据源的输入流</li>
+<li>从输入流中读取数据</li>
+<li>关闭输入流</li>
+</ol>
+<h3 id="3-1-3-字节输出流OutputStream"><a href="#3-1-3-字节输出流OutputStream" class="headerlink" title="3.1.3 字节输出流OutputStream"></a>3.1.3 字节输出流OutputStream</h3><p>​    字节输出流的作用是将字节数据从应用程序（内存）中传送到输出目的地，如外部设备、网络等。</p>
+<p>​    字节输出流OutputStream的常用方法。</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="center">write(int b)</td>
+<td align="center">将整数b的低8位写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(byte b[])</td>
+<td align="center">将字节数组中数据写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(byte b[ ],</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">int off,int len)</td>
+<td align="center">从字节数组b的off处写len个字节数据到输出流</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">flush()</td>
+<td align="center">强制将输出流保存在缓冲区中的数据写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">close()</td>
+<td align="center">关闭输出流，释放资源</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-4-文件字节输出流类FileOutputStream"><a href="#3-1-4-文件字节输出流类FileOutputStream" class="headerlink" title="3.1.4 文件字节输出流类FileOutputStream"></a>3.1.4 文件字节输出流类FileOutputStream</h3><p>​    在进行字节输出流操作时，经常使用的是OutputStream类的子类FileOutputStream，用于将数据写入File或其他的输出流。</p>
+<p>​    FileOutputStream类的常用构造方法：</p>
+<p><code>public FileOutputStream(File file) throws IOException</code></p>
+<p><code>public FileOutnputStream(String name) throws IOException</code></p>
+<p><code>public FileOutputStream(File file, boolean append) throws IOException</code></p>
+<p><code>public FileOutputStream(String name, boolean append) throws IOException</code></p>
+<p>  <strong>字节输出流写数据步骤</strong>：</p>
+<ol>
+<li>设定输出流的目的地</li>
+<li>创建指向这目的地输出</li>
+<li>向输出流中写入数据</li>
+<li>关闭输出流</li>
+</ol>
+<p>​    在完成写操作过程中，系统会将数据暂存到缓冲区中，缓冲区存满后再一次性写入到输出流中。</p>
+<p>​    执行close()方法时，不管缓冲区是否已满，都会把其中的数据写到输出流。</p>
+<h2 id="3-2-字符流"><a href="#3-2-字符流" class="headerlink" title="3.2 字符流"></a>3.2 字符流</h2><p>​    字符流通常用于文本文件的传输。</p>
+<p>​    抽象类Reader和抽象类Writer是所有字符流类的根类，其他字符流类都继承自这两个类。</p>
+<p>​    其中一些子类还在传输过程中对数据做了进一步处理以方便用户的使用。</p>
+<h3 id="3-2-1-字符输入流Reader"><a href="#3-2-1-字符输入流Reader" class="headerlink" title="3.2.1 字符输入流Reader"></a>3.2.1 字符输入流Reader</h3><p>​    字符输入流Reader是所有字符输入流类的父类，实现从数据源读入字符数据。常用方法有：</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="center">read()</td>
+<td align="center">从输入流读取单个字符</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(char[] cbuf)</td>
+<td align="center">从输入流读取字符保存到数组cbuf中，返回读取的字符数，如果已到达流的末尾，则返回 -1</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(char[] cbuf,int off,int len)</td>
+<td align="center">从输入流读取最多len个字符保存到字符数组cbuf中，存放的起始位置在off处。返回：读取的字符数，如果已到达流的末尾，则返回 -1</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">skip(long n)</td>
+<td align="center">跳过n个字符。</td>
+</tr>
+<tr>
+<td align="center">返回：实际跳过的字符数</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">mark(int readAheadLimit)</td>
+<td align="center">标记流中的当前位置</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">reset()</td>
+<td align="center">重置该流</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">markSupported()</td>
+<td align="center">判断此流是否支持 mark() 操作</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">close()</td>
+<td align="center">关闭该流，释放资源</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-2-文件字符输入流FileReader"><a href="#3-2-2-文件字符输入流FileReader" class="headerlink" title="3.2.2 文件字符输入流FileReader"></a>3.2.2 文件字符输入流FileReader</h3><p>​    进行字符输入流操作时，经常使用的是Reader类的子类FileReader，用于从输入流读取数据。</p>
+<p>​    FileReader类的常用构造方法：</p>
+<p><code>public FileReader(File file) throws FileNotFoundException</code></p>
+<p><code>public FileReader(String name) throws FileNotFoundException</code></p>
+<p>​    通过给定的File对象或文件名创建字符输入流。</p>
+<p>​    在创建输入流时，如果文件不存在或出现其他问题，会抛出FileNotFoundException异常。</p>
+<h3 id="3-2-3-字符输出流Writer"><a href="#3-2-3-字符输出流Writer" class="headerlink" title="3.2.3 字符输出流Writer"></a>3.2.3 字符输出流Writer</h3><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void</td>
+<td align="center">write(int c)</td>
+<td align="center">将整数c的低16位写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(char[] cbuf)</td>
+<td align="center">将字符数组中数据写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(cbuf[ ],int off,int len)</td>
+<td align="center">从字符数组cbuf的off处开始取len个字符写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(String str)</td>
+<td align="center">将字符串写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(String str,int off,int len)</td>
+<td align="center">从字符串str的off处开始取len个字符数据写到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">flush()</td>
+<td align="center">强制将输出流保存在缓冲区中的数据写到输出</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">close()</td>
+<td align="center">关闭输出流，释放资源</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-4-文件字符输出流FileWriter类"><a href="#3-2-4-文件字符输出流FileWriter类" class="headerlink" title="3.2.4 文件字符输出流FileWriter类"></a>3.2.4 文件字符输出流FileWriter类</h3><p>​    FileWriter类和字节流FileOutputStream类相对应，实现字符的输出操作，实现方法也基本相同。FileWriter类的常用构造方法：</p>
+<p><code>public FileWriter(File file) throws IOException</code></p>
+<p><code>public FileWriter(String name) throws IOException</code></p>
+<p><code>public FileWriter(File file, boolean append) throws IOException</code></p>
+<p><code>public FileWriter(String name, boolean append) throws IOException</code></p>
+<p>​    如果第二个参数为 true，则将字符写入文件末尾处，而不是写入文件开始处。</p>
+<p>​    如果文件不存在或出现其他问题，会抛出IOException异常。</p>
+<h1 id="4、数据流"><a href="#4、数据流" class="headerlink" title="4、数据流"></a>4、数据流</h1><p>​    数据流是Java提供的一种装饰类流。</p>
+<p>​    建立在实体流基础上，让程序不需考虑数据所占字节个数的情况下就能够正确地完成读写操作。</p>
+<p>​    DataInputStream类和DataOutputStream类分别为数据输入流类和数据输出流类。</p>
+<h2 id="4-1-数据输入流"><a href="#4-1-数据输入流" class="headerlink" title="4.1 数据输入流"></a>4.1 数据输入流</h2><p>​    数据输入流DataInputStream类允许程序以与机器无关方式从底层输入流中读取基本 Java 数据类型。</p>
+<p>​    DataInputStream类的常用方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">DataInputStream(InputStream in)</td>
+<td align="center">使用指定的实体流 InputStream 创建一个DataInputStream</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">readBoolean()</td>
+<td align="center">读取一个布尔值</td>
+</tr>
+<tr>
+<td align="center">byte</td>
+<td align="center">readByte()</td>
+<td align="center">读取一个字节</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">readChar()</td>
+<td align="center">读取一个字符</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">readLong()</td>
+<td align="center">读取一个长整型数</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">readInt()</td>
+<td align="center">读取一个整数</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">readShort()</td>
+<td align="center">读取一个短整型数</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">readFloat()</td>
+<td align="center">读取一个Float数</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">readDouble()</td>
+<td align="center">读取一个Double数</td>
+</tr>
+<tr>
+<td align="center">String</td>
+<td align="center">readUTF()</td>
+<td align="center">读取一个UTF字符串</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">skipBytes(int n)</td>
+<td align="center">跳过并丢弃n个字节，返回实际跳过的字节数</td>
+</tr>
+</tbody></table>
+<h2 id="4-2-数据输出流"><a href="#4-2-数据输出流" class="headerlink" title="4.2 数据输出流"></a>4.2 数据输出流</h2><p>​    数据输出流DataOutputStream类允许程序以适当方式将基本Java数据类型写入输出流中。DataOutputStream类的常用方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">DataOuputStream</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(OutputStream out)</td>
+<td align="center">创建一个新的数据输出流，将数据写入指定基础输出流</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeBoolean(Boolean v)</td>
+<td align="center">将一个布尔值写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeByte(int v)</td>
+<td align="center">将一个字节写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeBytes(String s)</td>
+<td align="center">将字符串按字节（每个字符的高八位丢弃）顺序写出到输出流中</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeChar(int c)</td>
+<td align="center">将一个 char 值以2字节值形式写入输出流中，先写入高字节</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeChars(String s)</td>
+<td align="center">将字符串按字符顺序写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeLong(long v)</td>
+<td align="center">将一个长整型数写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeInt(int v)</td>
+<td align="center">将一个整数写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeShort(int v)</td>
+<td align="center">将一个短整型数写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeFloat(float v)</td>
+<td align="center">将一个Float数写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeDouble(double v)</td>
+<td align="center">将一个Double数写出到输出流</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeUTF(String s)</td>
+<td align="center">将一个字符串用UTF-8编码形式写出到输出流</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">size()</td>
+<td align="center">返回写到数据输出流中的字节数</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">flush()</td>
+<td align="center">清空输出流，使所有缓冲中的字节被写出到流中</td>
+</tr>
+</tbody></table>
+<h1 id="5、缓冲流"><a href="#5、缓冲流" class="headerlink" title="5、缓冲流"></a>5、缓冲流</h1><p>​    缓冲流是在实体I/O流基础上增加一个缓冲区，应用程序和I/O设备之间的数据传输都要经过缓冲区来进行。</p>
+<p>​    缓冲流分为缓冲输入流和缓冲输出流。</p>
+<p>​    缓冲输入流是将从输入流读入的字节/字符数据先存在缓冲区中，应用程序从缓冲区而不是从输入流读取数据；</p>
+<p>​    缓冲输出流是在进行数据输出时先把数据存在缓冲区中，当缓冲区满时再一次性地写到输出流中。</p>
+<p>​    使用缓冲流可以减少应用程序与I/O设备之间的访问次数，提高传输效率；</p>
+<p>​    可以对缓冲区中的数据进行按需访问和预处理，增加访问的灵活性。</p>
+<h2 id="5-1-缓冲输入流"><a href="#5-1-缓冲输入流" class="headerlink" title="5.1 缓冲输入流"></a>5.1 缓冲输入流</h2><p>​    包括字节缓冲输入流BufferedInputStream类和字符缓冲输入流BufferedReader类。</p>
+<h3 id="5-1-1-字节缓冲输入流BufferedInputStream类"><a href="#5-1-1-字节缓冲输入流BufferedInputStream类" class="headerlink" title="5.1.1 字节缓冲输入流BufferedInputStream类"></a>5.1.1 字节缓冲输入流BufferedInputStream类</h3><p>​    先通过实体输入流（例如FileInputStream类）对象逐一读取字节数据并存入缓冲区，应用程序则从缓冲区中读取数据。<br>​    构造方法：</p>
+<p><code>public BufferedInputStream(InputStream in)</code></p>
+<p><code>public BufferedInputStream(InputStream in,int size)</code></p>
+<p>​    size:指定缓冲区的大小。</p>
+<p>​    BufferedInputStream类继承自InputStream，所以该类的方法与InputStream类的方法相同。</p>
+<h3 id="5-1-2-字符缓冲输入流BufferedReader类"><a href="#5-1-2-字符缓冲输入流BufferedReader类" class="headerlink" title="5.1.2 字符缓冲输入流BufferedReader类"></a>5.1.2 字符缓冲输入流BufferedReader类</h3><p>​    与字节缓冲输入流BufferedInputStream类在功能和实现上基本相同。它只适用于字符读入。</p>
+<p>​    构造方法：</p>
+<p><code>public BufferedReader(Reader in)</code></p>
+<p><code>public BufferedReader(Reader in,int sz)</code></p>
+<p>​    BufferedReader类继承自Reader，所以该类的方法与Reader类的方法相同。</p>
+<p>​    新增按行读取的方法：<code>String readLine()</code></p>
+<p>​    该方法返回值为该行不包含结束符的字符串内容，如果已到达流末尾，则返回 null。</p>
+<h2 id="5-2-缓冲输出流"><a href="#5-2-缓冲输出流" class="headerlink" title="5.2 缓冲输出流"></a>5.2 缓冲输出流</h2><p>​    缓冲输出流包括字节缓冲输出流BufferedOutputStream类和字符缓冲输出流BufferedWriter类。</p>
+<h3 id="5-2-1-字节缓冲输出流BufferedOutputStream类"><a href="#5-2-1-字节缓冲输出流BufferedOutputStream类" class="headerlink" title="5.2.1 字节缓冲输出流BufferedOutputStream类"></a>5.2.1 字节缓冲输出流BufferedOutputStream类</h3><p>​    完成输出操作时，先将字节数据写入缓冲区，当缓冲区满时，再把缓冲区中的所有数据一次性写到底层输出流中。</p>
+<p>​    构造方法： </p>
+<p><code>public BufferedOutputStream(OutputStream out)</code><br><code>public BufferedOutputStream(OutputStream out,int size)</code></p>
+<p>​    BufferedOutputStream类继承自OutputStream，所以该类的方法与OutputStream类的方法相同。</p>
+<h3 id="5-2-2-字符缓冲输出流BufferedWriter类"><a href="#5-2-2-字符缓冲输出流BufferedWriter类" class="headerlink" title="5.2.2 字符缓冲输出流BufferedWriter类"></a>5.2.2 字符缓冲输出流BufferedWriter类</h3><p>​    与字节缓冲输出流BufferedOutputStream类在功能和实现上是相同的。只适用于字符输出。</p>
+<p>​    BufferedWriter类的构造方法：</p>
+<p><code>public BufferedWriter(Writer out)</code><br><code>public BufferedWriterr(Writer out,int sz)</code></p>
+<p>​    BufferedWriter类继承自Writer，所以该类的方法与Writer类的方法相同。</p>
+<p>​    新增写行分隔符的方法：<code>String newLine()</code>行分隔符字符串由系统属性 line.separator 定义。</p>
+<h1 id="6、-随机流"><a href="#6、-随机流" class="headerlink" title="6、 随机流"></a>6、 随机流</h1><p>​    随机流RandomAccessFile类创建的对象既可以作为输入流，也可以作为输出流，因此建立一个随机流就可以完成读写操作。</p>
+<p>​    RandomAccessFile类是java.lang.Object根类的子类。</p>
+<p>​    RandomAccessFile类的实例对象支持对随机访问文件的读取和写入。</p>
+<p>​    随机流可以用于多线程下载或多个线程同时写数据到文件，为快速完成访问提供了便利。</p>
+<h2 id="6-1-RandomAccessFile类"><a href="#6-1-RandomAccessFile类" class="headerlink" title="6.1  RandomAccessFile类"></a>6.1  RandomAccessFile类</h2><table>
+<thead>
+<tr>
+<th align="center">返回类型</th>
+<th align="center">方法名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">RandomAccessFile(String name, String mode)</td>
+<td align="center">参数name为待访问的文件名，file待访问的文件。参数mode为读写模式，常用的值有：“r”以只读方式打开文件，如果进行写操作会产生异常；“rw”：以读写方式打开文件，如果文件不存在，则创建</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">RandomAccessFile(File file, String mode)</td>
+<td align="center">同上</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read()</td>
+<td align="center">从文件中读取一个数据字节并以整数形式返回此字节</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(byte[] b)</td>
+<td align="center">从文件中读取最多b.length 个数据字节到b数组中，并返回实际读取的字节数</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">read(byte[] b, int off, int len)</td>
+<td align="center">从文件中读取len个字节数据到b数组中。off为字节在数组中存放的地址</td>
+</tr>
+<tr>
+<td align="center">XXX</td>
+<td align="center">readXXX()</td>
+<td align="center">从文件中读取一个XXX类型数据，XXX包括：boolean，byte，char，short，int，lang，float，double</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(int b)</td>
+<td align="center">写入指定的字节</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">write(byte[] b)</td>
+<td align="center">写入字节数组内容到文件</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeXXX</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(XXX v)</td>
+<td align="center">写入指定类型数据到文件，XXX包括：boolean，byte，char，short，int，lang，float，double</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeChars(String s)</td>
+<td align="center">写入字符串到文件</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">writeUTF(String s)</td>
+<td align="center">按UTF-8编码形式将字符串写入到文件</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">getFilePointer()</td>
+<td align="center">获取文件的当前偏移量</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">seek(long pos)</td>
+<td align="center">设置文件的指针偏移量</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">length()</td>
+<td align="center">获取文件的长度</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">setLength(long newLength)</td>
+<td align="center">设置此文件的长度。 如果 length 方法返回的文件的现有长度大于 newLength 参数，则该文件将被截短。超过则加大文件，多出部分没有内容</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">skipBytes(int n)</td>
+<td align="center">跳过输入的 n 个字节并丢弃跳过的字节</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">close()</td>
+<td align="center">关闭文件流，释放资源</td>
+</tr>
+</tbody></table>
+<p>​    由于编码格式不同当进行字符串读取的时候，有时会出现“乱码”的现象。</p>
+<p>​    对字符串重新进行编码可以解决乱码问题：</p>
+<ul>
+<li>先读字符串：<br><code>String str = in.readLine();</code></li>
+<li>再将字符串恢复成标准字节数组：<br><code>byte [] b=str.getBytes(“iso-8859-1”);</code></li>
+<li>最后将字节数组按当前机器的默认编码重新转化为字符串：<br><code>String result=new String(b);</code></li>
+<li>显式地指明编码类型，可以直接给出编码类型：<br><code>String result=new String(b,”GB2312”);</code></li>
+</ul>
+<h1 id="7、对象流"><a href="#7、对象流" class="headerlink" title="7、对象流"></a>7、对象流</h1><p>​    对象流是在实体流基础上，通过对对象数据的处理和变换，实现对象的永久保存和读取。</p>
+<p>​    ObjectInputStream和ObjectOutputStream分别是对象输入流类和对象输出流类，它们也是InputStream和OutputStream类的子类。</p>
+<p>​    通过对象输出流，可以把对象写入到文件或进行网络传输。</p>
+<p>​    对象输入流类可以从文件或网络上，把读取的数据还原成对象。</p>
+<p>​    要想实现对象的传输，待传输的对象要先进行序列化处理，才能保证对象能准确地保存和读取。</p>
+<h2 id="7-1-对象的序列化"><a href="#7-1-对象的序列化" class="headerlink" title="7.1 对象的序列化"></a>7.1 对象的序列化</h2><p>​    对象的序列化是指把对象转换成字节序列的过程，而把字节序列恢复为对象的过程称为对象的反序列化。</p>
+<p>​    一个类如果实现了java.io.Serializable接口，这个类的实例（对象）就是一个序列化的对象。</p>
+<p>​    Serializable接口中没有方法。实现了该接口的对象进行输出时，JVM将按照一定的格式（序列化信息）转换成字节进行传输和存储到目的地。</p>
+<p>​    对象输入流从文件或网络上读取对象时，会先读取对象的序列化信息，并根据这一信息创建对象。</p>
+<h2 id="7-2-对象输入流与对象输出流"><a href="#7-2-对象输入流与对象输出流" class="headerlink" title="7.2 对象输入流与对象输出流"></a>7.2 对象输入流与对象输出流</h2><h3 id="7-2-1-对象输入流ObjectInputStream类"><a href="#7-2-1-对象输入流ObjectInputStream类" class="headerlink" title="7.2.1 对象输入流ObjectInputStream类"></a>7.2.1 对象输入流ObjectInputStream类</h3><p>​    实现对象的输入操作。构造方法：</p>
+<p>   <code> public ObjectInputStream(InputStream in)</code></p>
+<p>​    类中的方法：<code>Object readObject()</code>从ObjectInputStream流中读取对象。</p>
+<h3 id="7-2-2-对象输出流ObjectOutputStream类"><a href="#7-2-2-对象输出流ObjectOutputStream类" class="headerlink" title="7.2.2 对象输出流ObjectOutputStream类"></a>7.2.2 对象输出流ObjectOutputStream类</h3><p>​    实现对象的输出操作。构造方法：</p>
+<p>​    <code>public ObjectOutputStream(OutputStream out)</code></p>
+<p>​    类中的方法：<code>void writeObject(Object o)</code>将指定对象o写入ObjectOutputStream流中。</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">kilig</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://kilig98.github.io/2020/07/20/io%E6%B5%81/">https://kilig98.github.io/2020/07/20/io%E6%B5%81/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">kilig</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/JAVA-IO%E6%B5%81/">
+                                    <span class="chip bg-color">JAVA IO流</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/07/21/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="网络编程">
+                        
+                        <span class="card-title">网络编程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ​         Java语言作为最流行的网络编程语言，提供了强大的网络编程功能。
+​        使用Java语言可以编写底层的网络通信程序，这是通过java.net包中提供的InetAddress类、URL类、Socket类以及Se
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    JAVA基本知识
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JAVA-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                        <span class="chip bg-color">JAVA 网络编程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/10/spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="spring事务管理">
+                        
+                        <span class="card-title">spring事务管理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1、什么是Spring事务管理？​        在实际开发中，操作数据库时都会涉及到事务管理问题，为此Spring提供了专门用于事务处理的API。Spring的事务管理简化了传统的事务管理流程，并且在一定程度上减少了开发者的工作量。
+2、
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/spring%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    spring框架
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/spring/">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A1%86%E6%9E%B6/">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="410983119"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">kilig</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">47.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "4";
+                    var startDate = "23";
+                    var startHour = "13";
+                    var startMinute = "56";
+                    var startSecond = "4";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
