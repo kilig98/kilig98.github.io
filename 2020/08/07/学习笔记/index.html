@@ -361,7 +361,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.4k
+                    7.9k
                 </div>
                 
 
@@ -746,10 +746,58 @@
 <p>​        如果长期不使用这个servlet，会自动销毁。</p>
 <h1 id="37、过滤器和拦截器"><a href="#37、过滤器和拦截器" class="headerlink" title="37、过滤器和拦截器"></a>37、过滤器和拦截器</h1><p>​        过滤器是J2EE组件，作用所有的请求，没有响应，依赖于servlet。编码转换</p>
 <p>​        拦截器是SpringMVC的组件，只作用一部分请求，会有响应，不依赖servlet。权限管理。</p>
-<h1 id="38、NIO"><a href="#38、NIO" class="headerlink" title="38、NIO"></a>38、NIO</h1><h1 id="39、微信公众号开发"><a href="#39、微信公众号开发" class="headerlink" title="39、微信公众号开发"></a>39、微信公众号开发</h1><p>13&amp;17</p>
-<p>​            00001101</p>
-<p>​            00010001</p>
-<p>​    00011101</p>
+<h1 id="38、NIO"><a href="#38、NIO" class="headerlink" title="38、NIO"></a>38、NIO</h1><h1 id="39、微信公众号开发"><a href="#39、微信公众号开发" class="headerlink" title="39、微信公众号开发"></a>39、微信公众号开发</h1><h1 id="40、-泛型擦除，上下限"><a href="#40、-泛型擦除，上下限" class="headerlink" title="40、 泛型擦除，上下限"></a>40、 泛型擦除，上下限</h1><p>​        <strong>泛型擦除：</strong></p>
+<p>​        当指定泛型类型时：<code>ArrayQueueT&lt;String&gt; queue = new ArrayQueueT&lt;String&gt;();</code></p>
+<p>​        编译器会报错<code>queue.inQueue(99)</code></p>
+<p>​        但是在字节码世界中，内部还是Object。</p>
+<pre class=" language-java"><code class="language-java">        Class <span class="token class-name">clz</span> <span class="token operator">=</span> queue<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Method method <span class="token operator">=</span> clz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"inQueue"</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> <span class="token number">99</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method method2 <span class="token operator">=</span> clz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"outQueue"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>method2<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>​          上下限：</p>
+<p>​        普通的泛型：<code>&lt;T&gt;</code></p>
+<p>​        定义上限：<code>&lt;T extends Demo&gt;</code>，所有继承Demo的子类，包括Demo类，都可以作为T的参数。</p>
+<p>​        定义下限：<code>&lt;T super SubDemo&gt;</code>，所有SubDemo的父类，包括SubDemo类，都可以作为T的参数。</p>
+<h1 id="41、栈溢出，堆溢出"><a href="#41、栈溢出，堆溢出" class="headerlink" title="41、栈溢出，堆溢出"></a>41、栈溢出，堆溢出</h1><p>​        堆溢出：<strong>OutOfMemoryError</strong> ，创建对象时没有足够的堆空间分配内存</p>
+<pre class=" language-java"><code class="language-java">        ArrayList<span class="token operator">&lt;</span>Byte<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Byte<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Byte</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token operator">*</span><span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            i<span class="token operator">++</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>​        栈溢出：<strong>StackOverFlowError</strong> ，栈深度大于虚拟机提供的最大栈深度</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">digui</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">digui</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">digui</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h1 id="42、强引用，软引用，弱引用，虚引用"><a href="#42、强引用，软引用，弱引用，虚引用" class="headerlink" title="42、强引用，软引用，弱引用，虚引用"></a>42、强引用，软引用，弱引用，虚引用</h1><pre class=" language-java"><code class="language-java">        String s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"qq"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//强引用</span>
+        SoftReference<span class="token operator">&lt;</span>String<span class="token operator">></span> ss <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SoftReference</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//软引用</span>
+        WeakReference<span class="token operator">&lt;</span>String<span class="token operator">></span> s3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakReference</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//弱引用</span>
+        PhantomReference<span class="token operator">&lt;</span>String<span class="token operator">></span> s4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PhantomReference</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//虚引用</span></code></pre>
+<p>Q/A:为什么提出这些引用？</p>
+<p>​        Java是由Jvm负责分配和释放内存，这是它的优点。但是这种方式不够灵活，所有提出了这四种引用。有些一直需要的对象就用强引用，有些不关键的对象就用其他引用。</p>
+<ol>
+<li><p><strong>强引用：</strong>永远不会回收，Jvm宁愿抛出OutOfMemoryError异常，也不会回收这一类对象。</p>
+</li>
+<li><p><strong>软引用：</strong>如果内存足够，就不会回收。当没位置了，就会回收它。软引用可以用来实现内存敏感的高速缓存。软引用可以用在浏览器的后退按钮。</p>
+</li>
+<li><p><strong>弱引用：</strong>不管内存有没有空位，只要扫描到它，就会回收。</p>
+</li>
+<li><p><strong>虚引用：</strong>就跟没有引用一样，在任何时候都会被回收。常用来跟踪对象被垃圾回收的活动。必须和引用队列联合使用。</p>
+</li>
+</ol>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200815171303437.png" alt="四种引用"></p>
 
             </div>
             <hr/>
@@ -986,54 +1034,55 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/2020/08/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="学习笔记">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="数据结构与算法">
                         
-                        <span class="card-title">学习笔记</span>
+                        <span class="card-title">数据结构与算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1、Session​    讲一讲session。
-​    因为HTTP是无状态协议，当需要前面请求的信息时，必须重传。这时就引入了session。
-​    session是服务端创建的一个容器。当请求过来时，如果请求没有session
+                            
+1、算法1.1 二分搜索​        binary search
+​        有序数组，查一个数的角标。
+public void halfSearch(int[] nums,int target)
+&amp;#123;
+    
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JAVA%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    JAVA学习
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">笔记</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -1293,7 +1342,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">47.3k</span>&nbsp;字
+                class="white-color">50.4k</span>&nbsp;字
             
             
             
