@@ -1,0 +1,1647 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java总结3, kilig-blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java总结3 | kilig-blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.0.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">kilig-blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">kilig-blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java总结3</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">总结</span>
+                            </a>
+                        
+                            <a href="/tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="post-category">
+                                JAVA基本知识
+                            </a>
+                        
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/JAVA%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                JAVA学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-08-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.9k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Spring-核心功能"><a href="#Spring-核心功能" class="headerlink" title="Spring 核心功能"></a>Spring 核心功能</h1><p>​        发展过程：</p>
+<ol>
+<li><p>Spring1.x</p>
+<p>​        此版本为了解决企业应用程序复杂性而创建的，当时J2EE应用的经典架构为分层架构：表现层，业务层，持久层。最流行的组合是SSH（Structs，Spring，Hibernate）。</p>
+<p>​        Spring1.x仅支持基于XML的配置。</p>
+</li>
+<li><p>Spring2.x</p>
+<p>​            变化不大，主要增加几个新的模块。</p>
+</li>
+<li><p>Spring3.x</p>
+<p>​            Spring3.x开始不仅支持XML配置，还扩展了基于Java类的配置，还增加了Tomcat等组件，同时将原来的Web细分为Portlet和Servlet。</p>
+</li>
+<li><p>Spring4.x</p>
+<p>​            提供RestFul风格，全面支持Java8。</p>
+</li>
+<li><p>Spring5.x</p>
+<p>​            不断适配Java的新版本，同时重构优化自身核心框架代码，支持函数式、响应式编程模型等。</p>
+</li>
+</ol>
+<p><strong>Spring核心</strong></p>
+<ul>
+<li>控制反转IoC</li>
+<li>依赖注入DI</li>
+<li>面向切面编程AOP</li>
+</ul>
+<p><strong>控制反转</strong></p>
+<p>​        顾名思义就是把创建对象的权利交给框架去控制，不需要人为的创建，这样实现了可插拔式的接口编程，有效地降低了代码耦合度，降低了扩展和维护的成本。</p>
+<p><strong>依赖注入</strong></p>
+<p>​        由容器动态的将某个依赖关系注入到组件中。依赖注入的目的并非为软件带来更多的功能，而是提升组件重用的频率，并为系统搭建一个灵活，可扩展的平台。只需通过简单的配置，就可以指定目标所用资源，完成自身业务逻辑。</p>
+<p><strong>IoC和DI的关系</strong></p>
+<p>​        IoC是Spring中的一个重要概念，DI则是实现IoC的方法和手段。依赖注入的常见方式：</p>
+<ol>
+<li>setter注入</li>
+<li>构造方法注入</li>
+<li>注解注入</li>
+</ol>
+<p><strong>Bean标签常用属性说明：</strong></p>
+<ul>
+<li>id：为实例对象起名称，不能包含特殊符号</li>
+<li>name：功能跟id一样，但现在一般不用，可以包含特殊符号</li>
+<li>class：创建对象所在类的全限定名</li>
+<li>scope：一般最常用的有两个值，Singleton单例模式，整个应用程序只能创建一个Bean的实例；Prototype：原型模式，每次注入都创建一个新的实例。Spring默认创建的是单例模式。</li>
+</ul>
+<p><strong>AOP</strong></p>
+<p>​    <strong>优点</strong></p>
+<ul>
+<li><p>集中处理一类问题，方便维护</p>
+</li>
+<li><p>逻辑更加清晰</p>
+</li>
+<li><p>降低模块间的耦合度</p>
+<p><strong>AspectJ注解说明：</strong></p>
+</li>
+<li><p>@Before 前置通知</p>
+</li>
+<li><p>@Around 环绕通知</p>
+</li>
+<li><p>@After 后置通知</p>
+</li>
+<li><p>@AfterReturning 返回通知</p>
+</li>
+<li><p>@AfterThrowing 异常通知</p>
+<p><strong>@Value注解的作用？</strong></p>
+<p>​    可以读取properties配置文件</p>
+<p>​    <code>@Value(&quot;#&#123;configProperties[&#39;jdbc.username&#39;]&#125;&quot;)</code></p>
+</li>
+</ul>
+<p><strong>Spring 中 bean的作用域类型？</strong></p>
+<ul>
+<li><p>单例（Singleton）：整个应用程序，只会创建一个Bean的实例</p>
+</li>
+<li><p>原型（Prototype）：每次注入都会创建一个新的bean实例</p>
+</li>
+<li><p>会话（Session）：每个会话创建一个bean实例，只在Web系统中有效。</p>
+</li>
+<li><p>请求（Request）：每次请求创建一个bean实例，只在Web系统中有效。</p>
+<p>Spring默认的是单例模式。</p>
+</li>
+</ul>
+<p><strong>Spring中的JdbcTemplate对象</strong></p>
+<p>​        用来操作数据库。比JDBC提供更多的功能和有利的操作。</p>
+<ul>
+<li>JdbcTemplate是线程安全的。</li>
+<li>实例化操作比较简单，仅需要传递DataSourse</li>
+<li>自动完成资源的创建和释放工作</li>
+<li>创建一次，到处可用，避免重复开发</li>
+</ul>
+<p><strong>Spring实现事务的两种方式</strong></p>
+<ol>
+<li><p>编程式事务</p>
+<p>​    使用TransactionTemplate 或PlatformTransactionManager 实现。</p>
+</li>
+<li><p>声明式事务</p>
+<p>​    底层是建立在AOP上的，在方法执行前后进行拦截，方法执行前创建新事物，执行后根据情况提交或回滚事务。</p>
+<p>​    不需要编程，减少代码的耦合，在配置文件中配置，在目标方法上添加@Transactional注解来实现。</p>
+</li>
+</ol>
+<p><strong>Spring声明式事务无效的可能原因？</strong></p>
+<ul>
+<li>MySQL使用的是MyISAM引擎，MyISAM不支持事务</li>
+<li>@Transactional使用在非public方法上</li>
+<li>@Transactional 在同一个类中无事务方法 A() 内部调用有事务方法 B()，那么此时 B() 事物不会生效</li>
+</ul>
+<p><strong>Spring中的Bean是线程安全的吗？</strong></p>
+<p>​        Bean默认是单例模式，Spring没有对单利Bean进行多线程的封装处理，因此默认情况下是不安全的。可以将作用域设置为Prototype模式。</p>
+<p><strong>Spring优点</strong></p>
+<ul>
+<li>开源免费的热门框架，稳定性高、解决问题成本低；</li>
+<li>方便集成各种优秀的框架；</li>
+<li>降低了代码耦合性，通过 Spring 提供的 IoC 容器，我们可以将对象之间的依赖关系交由 Spring 进行控制，避免硬编码所造成的过度程序耦合；</li>
+<li>方便程序测试，在 Spring 里，测试变得非常简单，例如：Spring 对 Junit 的支持，可以通过注解方便的测试 Spring 程序；</li>
+<li>降低 Java EE API 的使用难度，Spring 对很多难用的 Java EE API（如 JDBC、JavaMail、远程调用等）提供了一层封装，通过 Spring 的简易封装，让这些 Java EE API 的使用难度大为降低。</li>
+</ul>
+<p><strong>Spring和Structs的区别</strong><br>       Spring 特性如下：</p>
+<ul>
+<li>具备 IOC/DI、AOP 等通用能力，提高研发效率</li>
+<li>除了支持 Web 层建设以外，还提供了 J2EE 整体服务</li>
+<li>方便与其他不同技术结合使用，如 Hibernate、MyBatis 等</li>
+<li>Spring 拦截机制是方法级别</li>
+</ul>
+<p>​      Struts 特性如下：</p>
+<ul>
+<li>是一个基于 MVC 模式的一个 Web 层的处理</li>
+<li>Struts 拦截机制是类级别</li>
+</ul>
+<p><strong>Spring，Spring Boot，Spring Cloud</strong></p>
+<ul>
+<li>Spring Framework 简称 Spring，是整个 Spring 生态的基础。</li>
+<li>Spring Boot 是一个快速开发框架，让开发者可以迅速搭建一套基于 Spring 的应用程序，并且将常用的 Spring 模块以及第三方模块，如 MyBatis、Hibernate 等都做了很好的集成，只需要简单的配置即可使用，不需要任何的 XML 配置文件，真正做到了开箱即用，同时默认支持 JSON 格式的数据，使用 Spring Boot 进行前后端分离开发也非常便捷。</li>
+<li>Spring Cloud 是一套整合了分布式应用常用模块的框架，使得开发者可以快速实现微服务应用。作为目前非常热门的技术，有关微服务的话题总是在各种场景下被大家讨论，企业的招聘信息中也越来越多地出现对于微服务架构能力的要求。</li>
+</ul>
+<p><strong>Spring中用到了哪些设计模式？</strong></p>
+<ul>
+<li>工厂模式：通过 BeanFactory、ApplicationContext 来创建 bean 都是属于工厂模式；</li>
+<li>单例、原型模式：创建 bean 对象设置作用域时，就可以声明 Singleton（单例模式）、Prototype（原型模式）；</li>
+<li>观察者模式：Spring 可以定义一下监听，如 ApplicationListener 当某个动作触发时就会发出通知；</li>
+<li>责任链模式：AOP 拦截器的执行；</li>
+<li>策略模式：在创建代理类时，如果代理的是接口使用的是 JDK 自身的动态代理，如果不是接口使用的是 CGLIB 实现动态代理。</li>
+</ul>
+<h1 id="SpringMVC核心组件"><a href="#SpringMVC核心组件" class="headerlink" title="SpringMVC核心组件"></a>SpringMVC核心组件</h1><p>​        SpringMVC是Spring框架提供的Web组件。</p>
+<p>​        它的实现基于 MVC 的设计模式：Controller（控制层）、Model（模型层）、View（视图层），提供了前端路由映射、视图解析等功能，让 Java Web 开发变得更加简单，也属于 Java 开发中必须要掌握的热门框架。</p>
+<p><strong>运行流程：</strong></p>
+<ol>
+<li>客户端发送请求至前端控制器（DispatcherServerlt）</li>
+<li>前端控制器根据请求路径，进入对应的处理器</li>
+<li>处理器调用相应的业务方法</li>
+<li>处理器获取到相应的业务数据</li>
+<li>处理器把组装好的数据交还给前端控制器</li>
+<li>前端控制器将获取的ModelAndView对象传给视图解析器</li>
+<li>前端控制器获取到解析好的页面数据</li>
+<li>返回给客户端</li>
+</ol>
+<p><img src="/2020/08/28/Java%E6%80%BB%E7%BB%933/image-20200829150618282.png" alt="MCV运行流程"></p>
+<p><strong>核心组件</strong></p>
+<ol>
+<li><p>DispacherServlet：核心处理器，负责调度其它组件的执行</p>
+</li>
+<li><p>Handler：处理器，完成具体的业务逻辑，相当于Servlet</p>
+</li>
+<li><p>HandlerMapping：DispacherServlet通过HandlerMapping将请求映射到不同的Handler</p>
+</li>
+<li><p>HandlerInterceptor：拦截器</p>
+</li>
+<li><p>HandlerExecutionChain：处理器执行链</p>
+</li>
+<li><p>HandlerAdapter：处理器适配器，Handler 执行业务方法之前，需要进行一系列的操作包括表单数据的验证、数据类型的转换、将表单数据封装到 POJO 等，这一系列的操作，都是由 HandlerAdapter 来完成，DispatcherServlet 通过 HandlerAdapter 执行不同的 Handler。</p>
+</li>
+<li><p>ModelAndView：返回结果</p>
+</li>
+<li><p>ViewResolver：视图解析器，DispacherServlet通过它将逻辑视图解析成物理视图，最终将渲染结果响应给客户端</p>
+</li>
+</ol>
+<p><strong>自动类型转换</strong></p>
+<p>​        MVC可以将表单的内容，自动装配到实体类的对应属性上。</p>
+<p><strong>中文乱码处理</strong></p>
+<ul>
+<li>在web.xml中添加过滤器</li>
+<li>设置RequestMapping的produces属性，指定返回类型和编码</li>
+</ul>
+<hr>
+<p><strong>POJO类和JavaBean</strong></p>
+<p>​        POJO类就是普通Java类，具有getter/setter方法。</p>
+<p>​        当一个POJO类可序列化，有一个无参的构造方法，它就是一个JavaBean</p>
+<p><strong>如何实现跨域访问？</strong></p>
+<p>​        使用JSONP，或者在服务端设置运行跨域。</p>
+<p><strong>@RequestMapping注解常用属性</strong></p>
+<ul>
+<li>value：指定 URL 请求的实际地址，用法：@RequestMapping(value=”/index”)；</li>
+<li>method：指定请求的 method 类型，如 GET/POST/PUT/DELETE 等，用法：@RequestMapping(value=”/list”,method=RequestMethod.POST)；</li>
+<li>params：指定请求参数中必须包含的参数名称，如果不存在该名称，则无法调用此方法，用法：@RequestMapping(value=”/list”,params={“name”,”age”})。</li>
+</ul>
+<p><strong>常见HTTP状态码</strong></p>
+<ul>
+<li>400：错误请求，服务器不理解请求的语法</li>
+<li>401：未授权，请求要求身份验证</li>
+<li>403：禁止访问，服务器拒绝请求</li>
+<li>500：服务器内部错误</li>
+<li>502：错误网关</li>
+<li>504：网关超时</li>
+</ul>
+<p><strong>forward和redirect</strong></p>
+<ul>
+<li>forward 表示请求转发，请求转发是服务器的行为；redirect 表示重定向，重定向是客户端行为；</li>
+<li>forward 是服务器请求资源，服务器直接访问把请求的资源转发给浏览器，浏览器根本不知道服务器的内容是从哪来的，因此它的地址栏还是原来的地址；redirect 是服务端发送一个状态码告诉浏览器重新请求新的地址，因此地址栏显示的是新的 URL；</li>
+<li>forward 转发页面和转发到的页面可以共享 request 里面的数据；redirect 不能共享数据；</li>
+<li>从效率来说，forward 比 redirect 效率更高。</li>
+</ul>
+<p><strong>Spring MVC的常用注解：</strong></p>
+<ul>
+<li>@Controller：用于标记某个类为控制器；</li>
+<li>@ResponseBody ：标识返回的数据不是 html 标签的页面，而是某种格式的数据，如 JSON、XML 等；</li>
+<li>@RestController：相当于 @Controller 加 @ResponseBody 的组合效果；</li>
+<li>@Component：标识为 Spring 的组件；</li>
+<li>@Configuration：用于定义配置类；</li>
+<li>@RequestMapping：用于映射请求地址的注解；</li>
+<li>@Autowired：自动装配对象；</li>
+<li>@RequestHeader：可以把 Request 请求的 header 值绑定到方法的参数上。</li>
+</ul>
+<p><strong>拦截器的使用场景</strong></p>
+<ul>
+<li>日志记录</li>
+<li>权限控制</li>
+<li>统一安全处理</li>
+</ul>
+<p><strong>获取request的方式</strong></p>
+<ol>
+<li>从请求参数中获取</li>
+<li>通过RequestContextHolder上下文获取request对象</li>
+<li>通过自动注入的方式</li>
+</ol>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><p>​        SpringBoot解决了Spring框架使用较为繁琐的问题。SpringBoot的核心思想是约定大于配置，让开发人员不需要任何XML文件，就可以像Maven整合Jar包一样，整合并使用所有框架。</p>
+<p><strong>特性</strong></p>
+<ul>
+<li>秒级构建一个项目</li>
+<li>便捷的对外输出格式</li>
+<li>简介的安全集成策略</li>
+<li>内嵌容器运行</li>
+<li>强大的开发包，支持热启动</li>
+<li>自动管理依赖</li>
+<li>自带应用监控</li>
+</ul>
+<hr>
+<p><strong>Spring、Spring Boot、Spring Cloud</strong></p>
+<p>​        它们都是Spring里的东西。Spring Boot是在Spring框架的基础上开发而来，可以更加方便的使用Spring；Spring Cloud是依赖于Spring Boot而构建的一套微服务治理框架。</p>
+<p><strong>Spring Boot的优势</strong></p>
+<ul>
+<li>开发变得简单，提供了丰富的解决方案，快速集成各种解决方案提升开发效率；</li>
+<li>配置变得简单，提供了丰富的 Starters，集成主流开源产品往往只需要简单的配置即可；</li>
+<li>部署变得简单，其本身内嵌启动容器，仅仅需要一个命令即可启动项目，结合 Jenkins、Docker 自动化运维非常容易实现；</li>
+<li>监控变得简单，自带监控组件，使用 Actuator 轻松监控服务各项状态。</li>
+</ul>
+<p><strong>Ant、Maven、Gradle</strong></p>
+<p>​        都是Java领域中的三大构建工具。</p>
+<p>​        Ant是最早的工具，但是它操作复杂被淘汰、</p>
+<p>​        Maven目的是为了解决Ant的问题，它的好处在于可以将项目过程规范化、自动化、高效化、强大的可扩展性。</p>
+<p>​        Gradle结合了前两者的优点，但是相比Maven来讲行业使用率偏低。SpringBoot默认使用Maven。</p>
+<p><strong>Spring Boot热部署的两种方式</strong></p>
+<p>​        Spring Loaded、Spring-boot-devtools</p>
+<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><p><strong>优点：</strong></p>
+<ul>
+<li>相比于 JDBC 需要编写的代码更少</li>
+<li>使用灵活，支持动态 SQL</li>
+<li>提供映射标签，支持对象与数据库的字段关系映射</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>SQL 语句依赖于数据库，数据库移植性差</li>
+<li>SQL 语句编写工作量大，尤其在表、字段比较多的情况下</li>
+</ul>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li>首先加载 Mapper 配置的 SQL 映射文件，或者是注解的相关 SQL 内容。</li>
+<li>创建会话工厂，MyBatis 通过读取配置文件的信息来构造出会话工厂（SqlSessionFactory）。</li>
+<li>创建会话，根据会话工厂，MyBatis 就可以通过它来创建会话对象（SqlSession），会话对象是一个接口，该接口中包含了对数据库操作的增、删、改、查方法。</li>
+<li>创建执行器，因为会话对象本身不能直接操作数据库，所以它使用了一个叫做数据库执行器（Executor）的接口来帮它执行操作。</li>
+<li>封装 SQL 对象，在这一步，执行器将待处理的 SQL 信息封装到一个对象中（MappedStatement），该对象包括 SQL 语句、输入参数映射信息（Java 简单类型、HashMap 或 POJO）和输出结果映射信息（Java 简单类型、HashMap 或 POJO）。</li>
+<li>操作数据库，拥有了执行器和 SQL 信息封装对象就使用它们访问数据库了，最后再返回操作结果，结束流程。</li>
+</ol>
+<hr>
+<p><strong>MyBatis和Hibernate区别？</strong></p>
+<p>​        它们都是ORM框架。</p>
+<ul>
+<li>灵活性：MyBatis更加灵活，可以自己写语句。</li>
+<li>可移植性：Mybatis因为有很多自己写的SQL语句，所以可移植性较差。</li>
+<li>开发效率：Hibernate对SQL语句进行了封装，让开发者直接使用，所以开发效率更高。</li>
+<li>学习和使用门槛：Mybatis入门比较简单，门槛也低。</li>
+</ul>
+<p><strong>为什么不建议在程序中滥用事务？</strong></p>
+<p>​        因为事务的滥用会影响数据的 QPS（每秒查询率），另外使用事务的地方还要考虑各方面回滚的方案，如缓存回滚、搜索引擎回滚、消息补偿、统计修正等。</p>
+<p><strong>Mybatis的一级缓存和二级缓存</strong></p>
+<ul>
+<li>一级缓存是 SqlSession 级别的，是 MyBatis 自带的缓存功能，并且无法关闭，因此当有两个 SqlSession 访问相同的 SQL 时，一级缓存也不会生效，需要查询两次数据库；</li>
+<li>二级缓存是 Mapper 级别的，只要是同一个 Mapper，无论使用多少个 SqlSession 来操作，数据都是共享的，多个不同的 SqlSession 可以共用二级缓存，MyBatis 二级缓存默认是关闭的，需要使用时可手动开启，二级缓存也可以使用第三方的缓存，比如，使用 Ehcache 作为二级缓存。</li>
+</ul>
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><p><strong>应用场景？</strong></p>
+<ul>
+<li>应用解耦，比如，用户下单后，订单系统需要通知库存系统，假如库存系统无法访问，则订单减库存将失败，从而导致订单失败。订单系统与库存系统耦合，这个时候如果使用消息队列，可以返回给用户成功，先把消息持久化，等库存系统恢复后，就可以正常消费减去库存了。</li>
+<li>削峰填谷，比如，秒杀活动，一般会因为流量过大，从而导致流量暴增，应用挂掉，这个时候加上消息队列，服务器接收到用户的请求后，首先写入消息队列，假如消息队列长度超过最大数量，则直接抛弃用户请求或跳转到错误页面。</li>
+<li>日志系统，比如，客户端负责将日志采集，然后定时写入消息队列，消息队列再统一将日志数据存储和转发。</li>
+</ul>
+<p><strong>RabbitMQ是什么？</strong></p>
+<p>​        高级消息队列协议，用于在分布式系统中存储转发消息。</p>
+<p><strong>RabbitMQ的优点？</strong></p>
+<ul>
+<li>可靠性，RabbitMQ 的持久化支持，保证了消息的稳定性；</li>
+<li>高并发，RabbitMQ 使用了 Erlang 开发语言，Erlang 是为电话交换机开发的语言，天生自带高并发光环和高可用特性；</li>
+<li>集群部署简单，正是因为 Erlang 使得 RabbitMQ 集群部署变的非常简单；</li>
+<li>社区活跃度高，因为 RabbitMQ 应用比较广泛，所以社区的活跃度也很高；</li>
+<li>解决问题成本低，因为资料比较多，所以解决问题的成本也很低；</li>
+<li>支持多种语言，主流的编程语言都支持，如 Java、.NET、PHP、Python、JavaScript、Ruby、Go 等；</li>
+</ul>
+<ul>
+<li>插件多方便使用，如网页控制台消息管理插件、消息延迟插件等。</li>
+</ul>
+<p><strong>消息持久化：把消息保存到物理介质上，以防止消息的丢失。</strong></p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p><strong>MySQL执行流程</strong></p>
+<ul>
+<li>客户端通过连接器与MySQL服务器连接</li>
+<li>连接成功后，先查有没有缓存，有的话直接返回缓存数据，没有的话进入分析器。</li>
+<li>分析器对SQL语句进行分析，看SQL语句是否正确，如果错误就返回错误信息，如果正确就进入优化器。</li>
+<li>优化器对查询语句进行优化处理，优化完成后进入执行器</li>
+<li>执行器通过SQL语句查找数据，返回</li>
+</ul>
+<p><strong>查询缓存的优缺点</strong></p>
+<p>​        优点：效率高</p>
+<p>​        缺点：任何更新表的操作都会清空缓存，因此导致查询缓存非常容易失效</p>
+<p><strong>InnoDB和MyISAM</strong></p>
+<p>​        InnoDB是MySQL的默认存储引擎。</p>
+<ul>
+<li>InnoDB支持事务，MyISAM不支持事务</li>
+</ul>
+<ul>
+<li>InnoDB 支持崩溃后安全恢复，MyISAM 不支持崩溃后安全恢复；</li>
+<li>InnoDB 支持行级锁，MyISAM 不支持行级锁，只支持到表锁；</li>
+<li>InnoDB 支持外键，MyISAM 不支持外键；</li>
+<li>MyISAM 性能比 InnoDB 高；</li>
+<li>MyISAM 支持 FULLTEXT 类型的全文索引，InnoDB 不支持 FULLTEXT 类型的全文索引，但是 InnoDB 可以使用 sphinx 插件支持全文索引，并且效果更好；</li>
+<li>InnoDB 主键查询性能高于 MyISAM。</li>
+</ul>
+<p><strong>回表查询</strong></p>
+<p>​        普通索引查询到主键索引后，回到主键索引树搜索的过程，称之为回表查询。</p>
+<p><strong>InnoDB为什么使用B+树，而不使用B树、Hash、红黑树或二叉树？</strong></p>
+<ul>
+<li>B 树：不管叶子节点还是非叶子节点，都会保存数据，这样导致在非叶子节点中能保存的指针数量变少（有些资料也称为扇出），指针少的情况下要保存大量数据，只能增加树的高度，导致 IO 操作变多，查询性能变低。</li>
+<li>Hash：虽然可以快速定位，但是没有顺序，IO 复杂度高。</li>
+<li>二叉树：树的高度不均匀，不能自平衡，查找效率跟数据有关（树的高度），并且 IO 代价高。</li>
+<li>红黑树：树的高度随着数据量增加而增加，IO 代价高。</li>
+</ul>
+<p><strong>MySQL如何处理死锁？</strong></p>
+<ul>
+<li>通过innodb lock wait timeout 来设置超时时间</li>
+<li>发起死锁检测，发现死锁之后，主动回滚死锁中的某一个事务，让其他事务继续执行</li>
+</ul>
+<p><strong>全局锁</strong></p>
+<p>​        全局锁就是对整个数据库实例加锁，它的典型使用场景就是做全量逻辑备份，这个时候整个库会处于完全的只读状态。</p>
+<p><strong>全局锁的问题</strong></p>
+<p>​        使用全局锁会使整个系统不能执行更新操作，所有的更新业务会出于等待状态；如果你是在从库进行备份，则会导致主从同步严重延迟。</p>
+<p><strong>MySQL的性能指标</strong></p>
+<p>​        每秒查询数，每秒处理事务数。   可以通过show status查询。</p>
+<p><strong>表的优化策略</strong></p>
+<ul>
+<li>读写分离，主库负责写，从库负责读。</li>
+<li>垂直分区，根据数据属性单独拆表甚至单独拆库。</li>
+<li>水平分区，保持表结构不变，根据策略存储数据分片，这样每一片数据被分散到不同的表或者库中。水平拆分只是解决了单一表数据过大的问题，表数据还在同一台机器上，对于并发能力没有什么意义，因此水平拆分最好分库。另外分片事务难以解决，跨节点 join 性能较差</li>
+</ul>
+<p><strong>查询语句的优化</strong></p>
+<ul>
+<li>不做列运算，把计算都放入各个业务系统实现；</li>
+<li>查询语句尽可能简单，大语句拆小语句，减少锁时间；</li>
+<li>不使用 select * 查询；</li>
+<li>or 查询改写成 in 查询；</li>
+<li>不用函数和触发器；</li>
+<li>避免 %xx 查询；</li>
+<li>少用 join 查询；</li>
+<li>使用同类型比较，比如 ‘123’ 和 ‘123’、123 和 123；</li>
+<li>尽量避免在 where 子句中使用 != 或者 &lt;&gt; 操作符，查询引用会放弃索引而进行全表扫描；</li>
+<li>列表数据使用分页查询，每页数据量不要太大。</li>
+</ul>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>​        <strong>Redis就是内存型数据库，基于c语言。通过kv存储数据到内存中，读取速度很快。</strong></p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>记录帖子点赞数、点击数、评论数</li>
+<li>缓存近期热帖</li>
+<li>缓存文章详情信息</li>
+<li>记录用户会话信息</li>
+</ul>
+<p><strong>支持的数据类型</strong></p>
+<p>​        String字符串，List列表，Set无序集合，ZSet有序集合，Hash哈希</p>
+<p>​        <strong>Redis中的key最大容量是512MB</strong></p>
+<p><strong>Redis的数据结构</strong></p>
+<p>​        Redis的数据结构是跳跃表，跳跃表是基于链表的扩展，在普通链表的基础上增加了层的概念，层级越高元素越少，每次先从高层查找。</p>
+<p><strong>缓存穿透</strong></p>
+<p>​        缓存穿透是指查询一个一定不存在的数据，由于缓存中没有，因而每次需要从数据库中查询，但数据库也没有相应的数据，所以不会写入缓存，这就将导致每次请求都会去数据库查询，这种行为就叫缓存穿透。</p>
+<p>​        解决方案：无论数据库是否能查到数据，都缓存起来。把没有数据的缓存结果的过期时间设置比较短的一个值。</p>
+<p><strong>缓存雪崩</strong></p>
+<p>​        指缓存由于某些原因，比如，宕机或者缓存大量过期等，从而导致大量请求到达后端数据库，进而导致数据库崩溃的情况。</p>
+<p>​        解决方案：分析业务功能，把缓存的失效时间均匀分布。</p>
+<p><strong>Redis切换数据库</strong></p>
+<p>​        默认情况下客户端连接到数据库0，总共有16个，通过select 语句切换</p>
+<p><strong>Redis的集群策略？</strong></p>
+<p>​        增加 1 台机器作为哨兵，监控 3 台主从机器，当主节点挂机的时候，机器内部进行选举，从集群中从节点里指定一台机器升级为主节点，从而实现高可用。当主节点恢复的时候，加入到从节点中继续提供服务；</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>​        工厂模式，抽象工厂模式，单例模式，代理模式</p>
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p><strong>什么是JVM，有什么作用？</strong></p>
+<p>​        JVM是Java虚拟机的缩写，是Java程序可以跨平台的基础。它的作用是加载Java程序，把字节码翻译成机器码交给CPU执行。</p>
+<p><strong>JVM的主要组成部分</strong></p>
+<ul>
+<li>类加载器</li>
+<li>运行时数据区</li>
+<li>执行引擎</li>
+<li>本地库接口</li>
+</ul>
+<p><strong>工作流程</strong></p>
+<p>​        首先程序在执行之前先要把 Java 代码（.java）转换成字节码（.class），JVM 通过类加载器（ClassLoader）把字节码加载到内存中，但字节码文件是 JVM 的一套指令集规范，并不能直接交给底层操作系统去执行，因此需要特定的命令解析器执行引擎（Execution Engine） 将字节码翻译成底层机器码，再交由 CPU 去执行，CPU 执行的过程中需要调用本地库接口（Native Interface）来完成整个程序的运行。</p>
+<p><strong>JVM内存划分</strong></p>
+<ul>
+<li>堆</li>
+<li>本地方法栈</li>
+<li>JVM栈</li>
+<li>本地方法区</li>
+<li>程序计数器</li>
+</ul>
+<p><strong>CMS垃圾回收器</strong></p>
+<p>​        CMS是一种以获得最短停顿时间为目标的收集器，非常实用B/S系统。</p>
+<p><strong>CMS的优缺点</strong></p>
+<p>​        优点：CMS垃圾回收器使用多线程，标记清除垃圾。</p>
+<p>​        缺点：对CPU要求敏感；无法清除浮动垃圾；垃圾回收时会产生大量空间碎片。</p>
+<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><p><strong>什么是跨域问题？怎么解决？</strong></p>
+<p>​        跨域问题指的是不同站点之间，使用ajax无法相互调用的问题。跨域问题是浏览器的行为，是为了保护用户信息安全，防止恶意网站窃取数据所做的限制，如果没有跨域限制就会导致信息被随意篡改和提交。</p>
+<p>​        解决方案</p>
+<ul>
+<li>jsonp</li>
+<li>nginx请求转发，把不同站点应用配置到同一个域名下</li>
+<li>服务端设置运行跨域访问，如果使用的是Spring框架可通过@CrossOrigin注解配置跨域</li>
+</ul>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><ol>
+<li><p>二分查找</p>
+<p>​    有序数组，每次从中间比较。</p>
+</li>
+<li><p>斐波那契数列</p>
+<p>​    return Fib(n-1)+Fib(n-2);</p>
+</li>
+<li><h4 id="一般而言，兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔子都不死，那么一年以后可以繁殖多少对兔子？请使用代码实现。"><a href="#一般而言，兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔子都不死，那么一年以后可以繁殖多少对兔子？请使用代码实现。" class="headerlink" title="一般而言，兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔子都不死，那么一年以后可以繁殖多少对兔子？请使用代码实现。"></a>一般而言，兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔子都不死，那么一年以后可以繁殖多少对兔子？请使用代码实现。</h4><p>斐波那契数列</p>
+</li>
+<li><p>冒泡排序</p>
+<p>​    两层循环（0-length，1-length），两个数比较</p>
+</li>
+<li><p>选择排序</p>
+<p>​    两层循环（0-length，i+1 - length），找最小值的角标，和i交换</p>
+</li>
+<li><p>插入排序</p>
+<p>​    把数组分为有序数组和无序数组。每一轮从无序数组中的第一个数，向有序数组中插入。</p>
+</li>
+</ol>
+<pre class=" language-java"><code class="language-java">        <span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">,</span>temp<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            temp <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span> j <span class="token operator">=</span> i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">>=</span><span class="token number">0</span> <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">></span>temp <span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span>
+                a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<ol start="7">
+<li><p>快排</p>
+<p>​    选择一个基准值，小于他的放左边，大于他的放右边。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">quickSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> left<span class="token punctuation">,</span><span class="token keyword">int</span> right<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">>=</span>right<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
+        <span class="token keyword">int</span> start <span class="token operator">=</span> left<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> end <span class="token operator">=</span> right<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> flag <span class="token operator">=</span> left<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">>=</span>a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                right<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">&lt;</span>a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                a<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                flag <span class="token operator">=</span> right<span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">&lt;=</span>a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                left<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                a<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                a<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                flag <span class="token operator">=</span> left<span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token function">quickSort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> start<span class="token punctuation">,</span> left<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">quickSort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> left<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<ol start="8">
+<li>堆排序</li>
+</ol>
+</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">heapSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token operator">==</span>null<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
+        <span class="token keyword">int</span> length <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>length<span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> length<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//和左孩子比较</span>
+                <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;=</span>length<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//和右孩子比较</span>
+                <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    a<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> t <span class="token operator">=</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            a<span class="token punctuation">[</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+            length<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">kilig</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://kilig98.github.io/2020/08/28/Java%E6%80%BB%E7%BB%933/">https://kilig98.github.io/2020/08/28/Java%E6%80%BB%E7%BB%933/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">kilig</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%80%BB%E7%BB%93/">
+                                    <span class="chip bg-color">总结</span>
+                                </a>
+                            
+                                <a href="/tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/08/28/Java%E6%80%BB%E7%BB%933/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Java总结3">
+                        
+                        <span class="card-title">Java总结3</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Spring 核心功能​        发展过程：
+
+Spring1.x
+​        此版本为了解决企业应用程序复杂性而创建的，当时J2EE应用的经典架构为分层架构：表现层，业务层，持久层。最流行的组合是SSH（Structs，Spr
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    JAVA基本知识
+                                </a>
+                            
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/JAVA%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    JAVA学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/08/24/Java%E6%80%BB%E7%BB%932/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java总结2">
+                        
+                        <span class="card-title">Java总结2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            IO，NIO，AIOIO介绍
+​        IO是基于流模型出现的输入输出流，比如操作文件时用输入输出流读取文件和写入文件。
+​        传统IO是BIO（Block-IO）传统阻塞IO。
+
+字节流：InputStream，Out
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    JAVA基本知识
+                                </a>
+                            
+                            <a href="/categories/JAVA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/JAVA%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    JAVA学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="410983119"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">kilig</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">80.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "4";
+                    var startDate = "23";
+                    var startHour = "13";
+                    var startMinute = "56";
+                    var startSecond = "4";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

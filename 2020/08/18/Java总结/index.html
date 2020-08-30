@@ -515,9 +515,14 @@ s <span class="token operator">-=</span> <span class="token number">1</span><spa
 <p>​        泛型擦除后就变成了Object对象，Object对象不包括基本数据类型。</p>
 <p><strong>Q/A:  如何选择包装类和基本类？</strong></p>
 <p>​        正确的使用包装类可以提高效率。</p>
-<pre><code>1. 所有PO类的对象都必须使用包装类。
- 2. RPC技术的方法返回值和参数都必须使用包装类。
- 3. 局部变量使用基本数据类型。</code></pre>
+<ol>
+<li><p>所有PO类的对象都必须使用包装类。</p>
+<ol start="2">
+<li>RPC技术的方法返回值和参数都必须使用包装类。</li>
+<li>局部变量使用基本数据类型。</li>
+</ol>
+</li>
+</ol>
 <p><strong>Q/A:  基本数据类型一定存储在栈中吗？</strong></p>
 <p>​        不一定。</p>
 <p>​        局部变量存储在方法栈中。 全局变量存储在堆中。</p>
@@ -1566,7 +1571,7 @@ public class AppAddress &amp;#123;
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">HashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
-<p>​        HashSet默认容量是16，每次扩容0.75倍。</p>
+<p>​        HashSet默认容量是16，每次扩容1倍。</p>
 <ol start="5">
 <li><p>TreeSet</p>
 <p>​    TreeSet实现了自动排序。</p>
@@ -1669,7 +1674,7 @@ public class AppAddress &amp;#123;
 <li>ConcurrentHashMap：线程安全，不支持null作为键和值。</li>
 </ul>
 <p><strong>HashMap数据结构</strong></p>
-<p>​        数组加链表。在JDK8后，当链表长度大于等于8时，会转为红黑树存储。</p>
+<p>​        数组加链表。在JDK8后，当链表长度大于等于8，数组长度大于64时，会转为红黑树存储。</p>
 <p><strong>使用HashMap可能会出现什么问题？如何避免？</strong></p>
 <p>​        HashMap 在并发场景中可能出现死循环的问题，这是因为 HashMap  在扩容的时候会对链表进行一次倒序处理，假设两个线程同时执行扩容操作，第一个线程正在执行 B→A 的时候，第二个线程又执行了 A→B  ，这个时候就会出现 B→A→B 的问题，造成死循环。<br>​        解决的方法：升级 JDK 版本，在 JDK 8 之后扩容不会再进行倒序，因此死循环的问题得到了极大的改善，但这不是终极的方案，因为 HashMap 本来就不是用在多线程版本下的，如果是多线程可使用 ConcurrentHashMap 替代 HashMap。        </p>
 <p><strong>TreeMap怎么实现value倒序？</strong></p>
@@ -2503,7 +2508,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">68.7k</span>&nbsp;字
+                class="white-color">80.4k</span>&nbsp;字
             
             
             

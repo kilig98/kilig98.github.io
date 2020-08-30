@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    9k
                 </div>
                 
 
@@ -691,6 +691,363 @@ Files<span class="token punctuation">.</span><span class="token function">write<
 </ul>
 <p><strong>总结</strong></p>
 <p>​        程序的运行依靠的是进程，而进程的执行依靠的是多个线程，多线程之间可以共享一块内存和一组系统资源，而多进程间通常是相互独立的。线程的创建有三种方式：继承 Thread 重写 run 方法，实现 Runnable 或 Callable 接口，其中 Callable  可以允许线程的执行有返回值，JDK 8 中也可以使用 Lambda 来更加方便的使用线程，线程是有优先级的，优先级从 1-10  ，数字越大优先级越高，也越早被执行。如果两个线程各自拥有一把锁的同时，又同时等待获取对方的锁，就会造成死锁。可以降低锁的粒度或减少同步代码块的范围或使用 Java 提供的安全类，来防止死锁的产生。</p>
+<h1 id="线程池之ThreadPoolExecutor"><a href="#线程池之ThreadPoolExecutor" class="headerlink" title="线程池之ThreadPoolExecutor"></a>线程池之ThreadPoolExecutor</h1><p>​        线程池：把一个或多个线程通过统一的方式调度和重复使用的技术，减少性能的损耗。</p>
+<p><strong>为什么使用线程池？</strong></p>
+<ul>
+<li><p>可重复使用已有线程，避免对象创建、消亡和过度切换的性能开销。</p>
+</li>
+<li><p>避免创建大量同类线程所导致的资源过度竞争和内存溢出的问题。</p>
+</li>
+<li><p>支持更多功能，比如延迟任务线程池（newScheduledThreadPool）和缓存线程池（newCachedThreadPool）等。</p>
+<p>​    在Java中，线程池的概念是Executor这个接口，具体实现类为ThreadPoolExcutor。</p>
+</li>
+</ul>
+<p><strong>ThreadPoolExecutor的参数？</strong></p>
+<ol>
+<li><p>int corePoolSize：该线程池中核心线程数的最大值</p>
+<p>​    <strong>核心线程：</strong>线程池新建线程的时候，如果当前线程数小于核心线程数，那么会创建核心线程。如果超过corePoolSize，那么会创建非核心线程。核心线程默认情况下会一直存活在线程池中，即使它什么也不做。</p>
+<p>​    如果指定allowCoreThreadTimeOut的属性为true，那么核心线程如果闲置状态的话，超过一定时间就会被销毁。</p>
+</li>
+<li><p>int maximamPoolSize：该线程池中线程总数的最大值。</p>
+<p>​    线程总数=核心线程数+非核心线程数</p>
+</li>
+<li><p>long keepAliveTime：非核心线程的闲置存活时间</p>
+<p>​    一个非核心线程，如果闲置超过该时间，该线程就会被销毁。如果allowCoreThreadTimeOut设置为true，那么该时间也会作用在核心线程上。</p>
+</li>
+<li><p>TimeUnit unit：闲置存活时间的单位</p>
+<p>​    TimeUnit是一个枚举类型。微毫秒，微秒，毫秒，s，min，hour，days</p>
+</li>
+<li><p>BlockingQueue workQueueu：该线程池中的任务队列：维护着等待执行的Runnable对象</p>
+<p>​    当所有的核心线程都在运作时，新添加的任务会添加到这个队列，如果队列满了，则新建非核心线程去执行任务。常见的workQueue类型：</p>
+<p>​    <strong>SynchronousQueue：</strong>该队列会直接提交收到的任务，所以为了保证线程数不能达到maximumPoolSize，一般会将该属性设置为Integer.MAX_VALUE。</p>
+<p>​    <strong>LinkedBlockingQueue：</strong>接受到任务时，先判断核心线程数，创建或者把任务放到队列中，因为该队列是无限大的，所以会导致maximumPoolSize失效。</p>
+<p>​    <strong>ArrayBlockingQueue：</strong>可以限定队列的长度，当接受到任务时，判断核心线程数，创建，或者把任务放入队列，如果队列满了，创建非核心线程执行任务，如果队列满了，线程总数也满了，则会发生错误。</p>
+<p>​    <strong>DelayQueue：</strong>队列内的元素必须实现Delay接口，所以当一个任务传入队列时，只有达到了指定的时间，才会被执行。</p>
+</li>
+<li><p>ThreadFactory：为线程池创建一个线程工厂。</p>
+</li>
+<li><p>rejectedExecutorHandler</p>
+<p>​    线程池中任务队列超过最大值的拒绝策略，rejectedExecutorHandler是一个接口，它里面只有一个方法，可以在这个方法中添加超过队列最大值的处理事件。</p>
+<p>​    ThreadPoolExecutor中提供了四种默认的拒绝策略：</p>
+</li>
+</ol>
+<ul>
+<li>new ThreadPoolExecutor.DiscardPolicy()：丢弃掉该任务，不进行处理</li>
+<li>new ThreadPoolExecutor.DiscardOldestPolicy()：丢弃队列里最近的一个任务，并执行当前任务</li>
+<li>new ThreadPoolExecutor.AbortPolicy()：直接抛出 RejectedExecutionException 异常</li>
+<li>new ThreadPoolExecutor.CallerRunsPolicy()：既不抛弃任务也不抛出异常，直接使用主线程来执行此任务</li>
+</ul>
+<p><strong>向线程池添加任务</strong></p>
+<p>​        ThreadPoolExecutor.execute(Runnable task)提交任务</p>
+<p><strong>ThreadPoolExecutor的策略</strong></p>
+<p>​        当一个任务被添加进线程池时：</p>
+<ol>
+<li>线程数量未达到核心线程数，创建核心线程执行任务。</li>
+<li>达到核心线程数，添加进任务队列。</li>
+<li>队列已满，新建线程（非核心线程）执行任务。</li>
+<li>队列已满，线程数也满，根据拒绝策略调用逻辑。</li>
+</ol>
+<p><strong>常见的四种线程池？</strong></p>
+<p>​        Java通过Executors提供了四种核心线程池，这四种线程池都是直接或间接配置ThreadPoolExecutor的参数实现的。</p>
+<ul>
+<li><strong>可缓存线程池CachedThreadPool()</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newCachedThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">,</span>
+                                      60L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">,</span>
+                                      <span class="token keyword">new</span> <span class="token class-name">SynchronousQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<ol>
+<li>没有核心线程，线程数无限制。</li>
+<li>在创建任务时，若有空闲线程，直接复用，若无，则创建线程。</li>
+<li>闲置状态的线程超过60秒，就会被移除。</li>
+</ol>
+<ul>
+<li><strong>定长线程池FixedThreadPool</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token keyword">int</span> nThreads<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span>nThreads<span class="token punctuation">,</span> nThreads<span class="token punctuation">,</span>
+                                  0L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">,</span>
+                                  <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<ol>
+<li>核心线程数等于总线程数，所以默认情况下，线程不会销毁。</li>
+<li>提交了任务，如果有闲置线程，也不会复用，会创建一个新线程。之后会创建线程，添加任务到队列中。</li>
+</ol>
+<ul>
+<li><strong>单线程池SingleThreadPool</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ExecutorService <span class="token function">newSingleThreadExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FinalizableDelegatedExecutorService</span>
+        <span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                                0L<span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">,</span>
+                                <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<ol>
+<li>有且只有一个线程执行任务。</li>
+<li>所有任务按照顺序执行，遵循队列的入队出队规则。</li>
+</ol>
+<ul>
+<li><strong>延时线程池ScheduledThreadPool</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ScheduledExecutorService <span class="token function">newScheduledThreadPool</span><span class="token punctuation">(</span><span class="token keyword">int</span> corePoolSize<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ScheduledThreadPoolExecutor</span><span class="token punctuation">(</span>corePoolSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//ScheduledThreadPoolExecutor():public ScheduledThreadPoolExecutor(int corePoolSize) &amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>corePoolSize<span class="token punctuation">,</span> Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">,</span>
+          DEFAULT_KEEPALIVE_MILLIS<span class="token punctuation">,</span> MILLISECONDS<span class="token punctuation">,</span>
+          <span class="token keyword">new</span> <span class="token class-name">DelayedWorkQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>​        DEFAULT_KEEPALIVE_MILLIS默认为10秒。</p>
+<ol>
+<li>不仅设置了核心线程数，还设置了最大线程数为Integer.MAX_VALUE。</li>
+<li>唯一一个可以延时执行和周期执行任务的线程池。</li>
+</ol>
+<pre class=" language-java"><code class="language-java">        <span class="token comment" spellcheck="true">/*
+         * 延时3s后执行任务
+         */</span>
+        pool4<span class="token punctuation">.</span><span class="token function">schedule</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/*
+         * 延时3s后执行任务，当任务开始执行的时候过7s再次执行
+         */</span>
+        pool4<span class="token punctuation">.</span><span class="token function">scheduleAtFixedRate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/*
+         * 延时3s后执行任务，当任务结束后，过7s再次执行
+         */</span>
+        pool4<span class="token punctuation">.</span><span class="token function">scheduleWithFixedDelay</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li><p><strong>单线程延时线程池SingleThreadScheduledExecutor</strong></p>
+<p>​    其实就是一个单线程的延时线程池</p>
+</li>
+<li><p><strong>并行线程池WorkStealingPool</strong></p>
+<p>​    Java8新增的线程池，如果不指定任何参数，则以当前机器处理器个数作为线程个数，此线程池并行处理任务，不保证执行顺序。</p>
+</li>
+</ul>
+<p><strong>ThreadFactory就是一个接口，用来创建线程。</strong></p>
+<hr>
+<p><strong>submit()和execute()</strong></p>
+<ol>
+<li>execute()传入的是Runnable，submit()传入的是Callable</li>
+<li>execute不能接受返回值，submit可以接收返回值。</li>
+</ol>
+<p><strong>线程池关闭</strong></p>
+<ul>
+<li>shutdown()：不会立刻中止线程池，需要等所有任务队列中的任务都执行完才会中止。</li>
+<li>shutdownNow()：立刻中止线程池，线程池的状态变为STOP状态，并停止所有正在执行的任务，返回未执行的任务。</li>
+</ul>
+<p><strong>ThreadPoolExecutor的方法</strong></p>
+<ul>
+<li>submit()/execute()：执行线程池</li>
+<li>shutdown()/shutdownNow()：终止线程池</li>
+<li>isShutdown()：判断线程是否终止</li>
+<li>getActiveCount()：正在运行的线程数</li>
+<li>getCorePoolSize()：获取核心线程数</li>
+<li>getMaximumPoolSize()：获取最大线程数</li>
+<li>getQueue()：获取线程池中的任务队列</li>
+<li>allowCoreThreadTimeOut(boolean)：设置空闲时是否回收核心线程</li>
+</ul>
+<p><strong>ThreadPoolExecutor VS Executors</strong></p>
+<p>​        ThreadPoolExecutor是传统的创建线程池的方式 ，Executors提供了更多类型的线程池类型。但是不推荐使用Executors创建线程池。</p>
+<p>​        使用传统的方式可以让读者更加明确线程池的运行规则，规避资源耗尽的风险。</p>
+<p>​        Executors的弊端如下：</p>
+<ul>
+<li>定长线程池和单线程线程池，它俩的队列长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM</li>
+<li>可缓存线程池和延时线程池，它俩运行创建的线程数量为Integer.MAX_VALUE，可能会创建大量的线程，造成OOM</li>
+</ul>
+<p><strong>单线程池的意义？</strong></p>
+<p>​        单线程线程池提供了队列功能，如果有多个任务会排队执行，可以保证任务执行的顺序性。单线程线程池也可以重复利用已有线程，减低系统创建和销毁线程的性能开销。</p>
+<p><strong>总结</strong></p>
+<p>​        Executors 可以创建 6 种不同类型的线程池，其中 newFixedThreadPool()  适合执行单位时间内固定的任务数，newCachedThreadPool()  适合短时间内处理大量任务，newSingleThreadExecutor() 和  newSingleThreadScheduledExecutor() 为单线程线程池，而  newSingleThreadScheduledExecutor() 可以执行周期性的任务，是  newScheduledThreadPool(n) 的单线程版本，而 newWorkStealingPool() 为 JDK 8  新增的并发线程池，可以根据当前电脑的 CPU 处理数量生成对比数量的线程池，但它的执行为并发执行不能保证任务的执行顺序。</p>
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>​        ThreadLocal用于解决多线程之间的数据隔离问题。也就是说ThreadLocal会为每一个线程创建一个单独的变量副本。</p>
+<p><strong>ThreadLocal的应用场景</strong></p>
+<ul>
+<li><p>用来管理Session，因为每个人的信息是不一样的。</p>
+</li>
+<li><p>数据库连接，为每一个进程分配一个独立的资源。</p>
+</li>
+<li><p>还被用于Spring的事务管理器中</p>
+</li>
+</ul>
+<p><strong>ThreadLocal的内存溢出原理</strong></p>
+<p>​        ThreadLocal并不存储数据，而是依靠ThreadLocalMap存储数据，ThreadLocalMap中有一个Entry数组，数组通过KV的形式对数据进行存储，其中K就是ThreadLocal本身，V就是要存储的值。</p>
+<p>​        如果 ThreadLocal 没有被直接引用（外部强引用），在 GC（垃圾回收）时，由于 ThreadLocalMap 中的 key  是弱引用，所以一定就会被回收，这样一来 ThreadLocalMap 中就会出现 key 为 null 的  Entry，并且没有办法访问这些数据，如果当前线程再迟迟不结束的话，这些 key 为 null 的 Entry 的 value  就会一直存在一条强引用链：Thread Ref -&gt; Thread -&gt; ThreaLocalMap -&gt; Entry  -&gt; value 并且永远无法回收，从而造成内存泄漏。</p>
+<p>​        每次使用完ThreadLocal之后，调用remove方法移除无用的数据。</p>
+<hr>
+<p><strong>ThreadLocal为什么是线程安全的？</strong></p>
+<p>​        ThreadLocal为每一个维护变量的副本，把共享数据的可见范围限制在同一个线程之内，因此ThreadLocal是线程安全的，每个线程都有属于自己的变量。</p>
+<p><strong>如何共享数据？</strong></p>
+<p>​        使用ThreadLocal的子类InheritableThreadLocal可以天然的支持多线程间的信息共享。</p>
+<p><strong>ThreadLocal和Synchonized的区别？</strong></p>
+<p>​        ThreadLocal 和 Synchonized 都用于解决多线程并发访问，防止任务在共享资源上产生冲突，但是 ThreadLocal 与  Synchronized 有本质的区别，Synchronized  用于实现同步机制，是利用锁的机制使变量或代码块在某一时刻只能被一个线程访问，是一种 “以时间换空间” 的方式；而 ThreadLocal  为每一个线程提供了独立的变量副本，这样每个线程的（变量）操作都是相互隔离的，这是一种 “以空间换时间” 的方式。</p>
+<h1 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h1><p><strong>synchronized</strong></p>
+<p>​        synchronized是Java提供的同步机制，当一个线程正在执行synchronized修饰的代码块时，其他线程只能阻塞等待该线程执行完才能继续执行。</p>
+<p>​        synchronized的使用：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 修饰代码块</span>
+<span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// do something</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 修饰方法</span>
+<span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// do something</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>​        实现原理：</p>
+<p>​        本质是通过进入和退出的Monitor对象来实现线程安全的。</p>
+<p>​        JVM采用monitorenter和monitorexit两个指令实现同步，一个加锁，一个释放锁。</p>
+<p><strong>ReentrantLock使用</strong></p>
+<pre class=" language-java"><code class="language-java">Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>尝试获取锁</strong></p>
+<pre class=" language-java"><code class="language-java">lock<span class="token punctuation">.</span><span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//返回Boolean</span>
+lock<span class="token punctuation">.</span><span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token keyword">long</span> timeout<span class="token punctuation">,</span>TimeUnit unit<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//尝试一段时间内获取锁</span></code></pre>
+<p><strong>ReentrantLock的注意事项</strong></p>
+<p>​        使用Lock必须记得释放锁，不然该锁会被永久占用。</p>
+<hr>
+<p><strong>ReentrantLock的常用方法</strong></p>
+<ul>
+<li>lock()：用于获取锁</li>
+<li>unlock()：用于释放锁</li>
+<li>tryLock()：尝试获取锁</li>
+<li>getHoldCount()：查询当前线程执行 lock() 方法的次数</li>
+<li>getQueueLength()：返回正在排队等待获取此锁的线程数</li>
+<li>isFair()：该锁是否为公平锁</li>
+</ul>
+<p><strong>ReentrantLock的优势</strong></p>
+<p>​        ReentrantLock具备非阻塞方式获取锁的特性，使用tryLock()方法，使用tryLock(Time,Unit)方法还可以获取一段时间内的锁。ReentrantLock还可以中断获得的锁，使用lockInterruptibly()方法，当获取锁之后，如果线程被中断，则会抛出异常并释放当前获得的锁。</p>
+<p><strong>创建公平锁</strong></p>
+<p>​        new ReentrantLock(true)</p>
+<p><strong>公平锁和非公平锁</strong></p>
+<p>​        公平锁指线程获取锁是按照加锁顺序来的，非公平锁指强锁机制，先lock()的线程不一定先获取锁。</p>
+<p><strong>ReentrantLock 中 lock() 和 lockInterruptibly() 有什么区别？</strong></p>
+<p>​        lock() 和 lockInterruptibly() 的区别在于获取线程的途中如果所在的线程中断，lock() 会忽略异常继续等待获取线程，而 lockInterruptibly() 则会抛出 InterruptedException 异常。</p>
+<p><strong>synchronized和ReentrantLock的区别</strong></p>
+<ul>
+<li><p>ReentrantLock使用起来比较灵活，但是必须有释放锁的配合动作。</p>
+</li>
+<li><p>ReentrantLock必须手动加锁，释放锁。synchronized不需要手动开启和释放锁。</p>
+</li>
+<li><p>ReentrantLock只适用于代码块锁，而synchronized可用于修饰方法，代码块等；</p>
+</li>
+<li><p>ReentrantLock的性能略高于synchronized。</p>
+</li>
+</ul>
+<p><strong>synchornized如何实现锁升级？</strong></p>
+<p>​        在锁对象的对象头里面有一个 threadid 字段，在第一次访问的时候 threadid 为空，JVM（Java 虚拟机）让其持有偏向锁，并将  threadid 设置为其线程 id，再次进入的时候会先判断 threadid 是否尤其线程 id  一致，如果一致则可以直接使用，如果不一致，则升级偏向锁为轻量级锁，通过自旋循环一定次数来获取锁，不会阻塞，执行一定次数之后就会升级为重量级锁，进入阻塞，整个过程就是锁升级的过程。</p>
+<h1 id="并发包中的高级同步工具"><a href="#并发包中的高级同步工具" class="headerlink" title="并发包中的高级同步工具"></a>并发包中的高级同步工具</h1><p>java.utils.concurrent (JUC)</p>
+<ul>
+<li>提供了线程池的创建类ThreadPoolExecutor，Executors等；</li>
+<li>提供了各种锁，如Lock，ReentrantLock等；</li>
+<li>提供了各种线程安全的数据结构，如ConcurrentHashMap，LinkedBlockingQueue等；</li>
+<li>提供了更加高级的线程同步结构，如CountDownLatch、CyclicBarrier、Semaphore 等。</li>
+</ul>
+<p><strong>CountDownLatch</strong></p>
+<p>​        CountDownLatch(闭锁)可以看作一个只能做减法的计数器，可以让一个或多个线程等待执行。</p>
+<p>​        两个重要的方法：</p>
+<ul>
+<li>countDown()：使计数器减1；</li>
+<li>await()：当计数器不为0时，则调用该方法的线程阻塞，当计数器为0时，唤醒等待的一个或多个线程。</li>
+</ul>
+<p><strong>CyclicBarrier</strong></p>
+<p>​        CyclicBarrier（循环屏障）通过它可以实现一组线程等待满足某个条件后同时进行。</p>
+<p>​        它的构造方法为 <code>CyclicBarrier(int parties,Runnable barrierAction)</code>  其中，parties 表示有几个线程来参与等待，barrierAction 表示满足条件之后触发的方法。CyclicBarrier 使用 await() 方法来标识当前线程已到达屏障点，然后被阻塞。</p>
+<p>**Semaphore **</p>
+<p>​        Semaphore （信号量）用于管理多线程中控制资源的访问与使用。</p>
+<p>​        Semaphore 就好比停车场的门卫，可以控制车位的使用资源。比如来了 5 辆车，只有 2 个车位，门卫可以先放两辆车进去，等有车出来之后，再让后面的车进入。</p>
+<p><strong>Phaser</strong></p>
+<p>​        Phaser(移加器)是JDK 7 提供的，它的功能是等待所有线程到达之后，才继续或者开始进行新的一组任务。</p>
+<h1 id="锁和CAS"><a href="#锁和CAS" class="headerlink" title="锁和CAS"></a>锁和CAS</h1><p>​        <strong>乐观锁和悲观锁</strong></p>
+<p>​        乐观锁和悲观锁不是具体的“锁”，而是一种并发编程的基本概念。最早出现在数据库的设计中，后来逐渐倍Java的并发包所引入。</p>
+<ul>
+<li><p>悲观锁</p>
+<p>​    悲观锁认为对于同一个数据的并发操作，一定会发生修改，哪怕没有被修改，也会认为被修改了。因此对于同一个数据的并发操作，悲观锁采取加锁的形式，悲观的认为，不加锁的并发操作一定会出问题。</p>
+</li>
+<li><p>乐观锁</p>
+<p>​    乐观锁在获取数据时，并不担心数据被修改，每次获取数据时也不会加锁，只是在更新时，通过判断现有的数据是否和原数据一致来判断数据是否被其他线程操作，如果没被其他线程修改，则进行数据更新，如果被其他线程修改则不进行数据更新。</p>
+</li>
+</ul>
+<p><strong>公平锁和非公平锁</strong></p>
+<p>​        根据线程获取锁的抢占机制，分为公平锁和非公平锁。</p>
+<ul>
+<li><p>公平锁</p>
+<p>​    公平锁是指多个线程按照申请锁的顺序来获取锁。</p>
+</li>
+<li><p>非公平锁</p>
+<p>​    非公平锁是指多个线程获取锁的顺序并不是按照申请锁的顺序，而是通过抢占的方式去获取锁。</p>
+<p>​    ReentrantLock提供了创建两种锁的方式：</p>
+<p>new ReentrantLock(true/false);    // 公平锁/非公平锁</p>
+<p>​    如果构造函数不传入参数，默认为非公平锁。</p>
+</li>
+</ul>
+<p><strong>独占锁和共享锁</strong></p>
+<p>​        根据锁能否被多个线程持有，可以分为独占锁和共享锁。</p>
+<ul>
+<li><p>独占锁</p>
+<p>​    独占锁是指任何时候都只能有一个线程能执行资源操作。</p>
+</li>
+<li><p>共享锁</p>
+<p>​    共享锁是指可以同时被多个线程读取，但只能被一个线程修改。比如ReentrantReadWriteLock就是共享锁的实现方式，它允许一个线程进行写操作，其他线程进行读操作。</p>
+</li>
+</ul>
+<p><strong>可重入锁</strong></p>
+<p>​        可重入锁指的是该线程获取了该锁之后，可以无限次的进入该锁锁住的代码。</p>
+<p><strong>自旋锁</strong></p>
+<p>​        自旋锁是指尝试获取锁的线程不会立即阻塞，而是采用循环的方式去获取锁，这样的好处是减少线程上下文切换的损耗，缺点是会消耗CPU。</p>
+<p><strong>CAS和ABA</strong></p>
+<p>​        CAX(Compare and Swap)比较并交换，是一种乐观锁的实现，是用非阻塞算法来代替锁定，java.utils.concurrent包下的AtomicInteger 就是借助CAS来实现的。</p>
+<p>​        著名的ABA问题就是CAS引起的。</p>
+<p>​        ABA问题描述：</p>
+<ul>
+<li><p>线程一：取款，获取原值 200 元，与 200 元比对成功，减去 100 元，修改结果为 100 元。</p>
+</li>
+<li><p>线程二：取款，获取原值 200 元，阻塞等待修改。</p>
+</li>
+<li><p>线程三：转账，获取原值 100 元，与 100 元比对成功，加上 100 元，修改结果为 200 元。</p>
+</li>
+<li><p>线程二：取款，恢复执行，原值为 200 元，与 200 元对比成功，减去 100 元，修改结果为 100 元。</p>
+<p>​    常见解决ABA的方式：加版本号，来区分值是否有变动。</p>
+<p>​    Java 1.5 提供了AtomicStampedReference原子引用变量，通过添加版本号解决ABA问题。</p>
+</li>
+</ul>
+<hr>
+<p><strong>synchronized是哪种锁的实现？为什么？</strong></p>
+<p>​        synchronized是悲观锁的实现。因为synchronized修饰的代码，每次执行时都会进行加锁操作，同时只允许一个线程进行操作。</p>
+<p><strong>synchronized是公平锁还是非公平锁？</strong></p>
+<p>​        synchronized使用的是非公平锁，并且不可设置。这是因为非公平锁的吞吐量大于公平锁，并且是主流操作系统线程调度的基本选择。</p>
+<p><strong>为什么非公平锁的吞吐量大于公平锁？</strong></p>
+<p>​        比如A占用锁，B等待被唤醒，这时C来申请锁，如果是公平锁C就要排在B后面，但是非公平锁可以让C先用，当B被唤醒之前C就已近使用完成了，从而减少了C等待和唤醒之间的消耗。</p>
+<p><strong>volatile的作用？</strong></p>
+<p>​        volatile是JVM提供的最轻量级同步机制。</p>
+<p>​        当变量被定义成volatile之后，具备两种特性：</p>
+<ul>
+<li><p>保证此变量对所有线程的可见性，当一条线程修改了这个变量的值，改的新值对于其他线程是可见的。（可以立即得知）</p>
+</li>
+<li><p>禁止指令重排序优化，普通变量仅仅能保证在该方法执行过程中正确结果，但是不保证程序代码的执行顺序。</p>
+</li>
+</ul>
+<p><strong>volatile和synchronized的区别</strong></p>
+<p>​    synchronized既能保证可见性，又能保证原子性。而volatile只能保证可见性，无法保证原子性。比如i++是volatile修饰会有线程安全的问题。</p>
+<p><strong>CAS如何实现？</strong></p>
+<p>​        通过Java Native Interface的代码实现，比如在windows系统CAS就是借助C语言来调用CPU底层指令实现的。</p>
+<p>​        </p>
 
             </div>
             <hr/>
@@ -931,34 +1288,32 @@ Files<span class="token punctuation">.</span><span class="token function">write<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/24/Java%E6%80%BB%E7%BB%932/">
+                <a href="/2020/08/28/Java%E6%80%BB%E7%BB%933/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java总结2">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Java总结3">
                         
-                        <span class="card-title">Java总结2</span>
+                        <span class="card-title">Java总结3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IO，NIO，AIOIO介绍
-​        IO是基于流模型出现的输入输出流，比如操作文件时用输入输出流读取文件和写入文件。
-​        传统IO是BIO（Block-IO）传统阻塞IO。
+                            Spring 核心功能​        发展过程：
 
-字节流：InputStream，Out
+Spring1.x
+​        此版本为了解决企业应用程序复杂性而创建的，当时J2EE应用的经典架构为分层架构：表现层，业务层，持久层。最流行的组合是SSH（Structs，Spr
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -975,7 +1330,6 @@ Files<span class="token punctuation">.</span><span class="token function">write<
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1260,7 +1614,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">68.7k</span>&nbsp;字
+                class="white-color">80.4k</span>&nbsp;字
             
             
             
