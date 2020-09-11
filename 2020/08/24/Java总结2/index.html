@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9k
+                    9.1k
                 </div>
                 
 
@@ -839,7 +839,8 @@ Files<span class="token punctuation">.</span><span class="token function">write<
 <p>​    其实就是一个单线程的延时线程池</p>
 </li>
 <li><p><strong>并行线程池WorkStealingPool</strong></p>
-<p>​    Java8新增的线程池，如果不指定任何参数，则以当前机器处理器个数作为线程个数，此线程池并行处理任务，不保证执行顺序。</p>
+<p>​    Java8新增的线程池，如果不指定任</p>
+<p>何参数，则以当前机器处理器个数作为线程个数，此线程池并行处理任务，不保证执行顺序。</p>
 </li>
 </ul>
 <p><strong>ThreadFactory就是一个接口，用来创建线程。</strong></p>
@@ -1012,8 +1013,9 @@ lock<span class="token punctuation">.</span><span class="token function">tryLock
 <p><strong>自旋锁</strong></p>
 <p>​        自旋锁是指尝试获取锁的线程不会立即阻塞，而是采用循环的方式去获取锁，这样的好处是减少线程上下文切换的损耗，缺点是会消耗CPU。</p>
 <p><strong>CAS和ABA</strong></p>
-<p>​        CAX(Compare and Swap)比较并交换，是一种乐观锁的实现，是用非阻塞算法来代替锁定，java.utils.concurrent包下的AtomicInteger 就是借助CAS来实现的。</p>
+<p>​        CAS(Compare and Swap)比较并交换，是一种乐观锁的实现，是用非阻塞算法来代替锁定，java.utils.concurrent包下的AtomicInteger 就是借助CAS来实现的。</p>
 <p>​        著名的ABA问题就是CAS引起的。</p>
+<p>​        线程A查询过一个数据为100，线程B在线程A下一次查询之前+50 -50，线程A查询结果还是100，觉得数据没有改变。</p>
 <p>​        ABA问题描述：</p>
 <ul>
 <li><p>线程一：取款，获取原值 200 元，与 200 元比对成功，减去 100 元，修改结果为 100 元。</p>
@@ -1614,7 +1616,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.4k</span>&nbsp;字
+                class="white-color">84.5k</span>&nbsp;字
             
             
             

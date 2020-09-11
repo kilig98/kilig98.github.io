@@ -361,7 +361,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8k
+                    10.8k
                 </div>
                 
 
@@ -376,6 +376,13 @@
                 <h1 id="1、Session"><a href="#1、Session" class="headerlink" title="1、Session"></a>1、Session</h1><p>​    讲一讲session。</p>
 <p>​    因为HTTP是无状态协议，当需要前面请求的信息时，必须重传。这时就引入了session。</p>
 <p>​    session是服务端创建的一个容器。当请求过来时，如果请求没有sessionID，那么服务端就要创建一个新的session，并将sessionID返回给客户端。下一次请求就可以带上这个sessionID得到session里面的数据。</p>
+<p><strong>cookie和session的区别？</strong></p>
+<ol>
+<li>存储位置：cookie的数据存放在浏览器中，session的数据存放在服务器中。</li>
+<li>安全性：cookie不安全，考虑到安全应该使用session</li>
+<li>存储大小：单个cookie的存储大小不能超过4K，并且一个站点最多保存20个cookie，session则没限制</li>
+<li>性能：当访问增多，session会占用服务器的性能。</li>
+</ol>
 <h1 id="2、JAVA内存划分"><a href="#2、JAVA内存划分" class="headerlink" title="2、JAVA内存划分"></a>2、JAVA内存划分</h1><p>​        五大区：堆区，java栈区，本地方法栈区，方法区，程序寄存器区</p>
 <p>​        <strong>堆区：</strong>都是new出来的对象，释放都由垃圾回收器回收。</p>
 <p>​        <strong>java栈区：</strong>存放方法调用信息。</p>
@@ -436,9 +443,9 @@
 <h2 id="5-2-懒汉模式"><a href="#5-2-懒汉模式" class="headerlink" title="5.2 懒汉模式"></a>5.2 懒汉模式</h2><p>​        懒汉模式，顾名思义，就是实例在被用到的时候才去创建。用的时候检查有没有实例，没有的话就创建一个返回。分线程安全和线程不安全两种写法，区别就是用synchronized关键字。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Lazy</span> 
 <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Lazy lazy <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Lazy lazy <span class="token operator">=</span> null<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">Lazy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token function">Lazy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// TODO Auto-generated constructor stub</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -452,9 +459,9 @@
 <h2 id="5-3-饿汉模式"><a href="#5-3-饿汉模式" class="headerlink" title="5.3 饿汉模式"></a>5.3 饿汉模式</h2><p>​        饿汉模式就是“积极”。实例在初始化的时候就创建好了。优点是线程安全，缺点是浪费内存空间。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Hungry</span> 
 <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Hungry hungry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Hungry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Hungry hungry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Hungry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">Hungry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token function">Hungry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// TODO Auto-generated constructor stub</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -468,7 +475,7 @@
 <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> DoubleCheck instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">DoubleCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token function">DoubleCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// TODO Auto-generated constructor stub</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
@@ -553,6 +560,8 @@
 </ol>
 <hr>
 <p>谈一谈SpringMVC？</p>
+<p>​        流程：前端发出请求给Controller，Controller通过请求里的url到handlermapping中找handler，找到handler后发送给handleradpter执行，返回ModleAndView对象，然后交给视图解析器得到页面返回。但是现在我们都不走视图解析器这一套了，使用@Respnse注解，要求直接返回json或者基本数据类型。</p>
+<hr>
 <p>​        当前端发送一个请求给控制器时，控制器会根据请求来的URL到HandleMapping中查找。HandleMapping中有两种映射方式。</p>
 <p>​        第一种是BeanNameMapping，一个URL对应一个类的全限定名。如果URL在这里查到的话，就可以根据全限定名得到字节码，实例化一个对象，然后用接口回调技术去调用doGet或doPost方法。</p>
 <p>​        第二种是annotationMethodMapping，一个URL对应一个类中的一个方法。URL在这里查到，首先得到字节码，实例化一个对象。然后根据方法名，参数类型，获取method对象。当方法无参，直接动态调用invoke函数。有参的情况下，就需要从请求里获取实参，装配给方法的参数。调用invoke函数。</p>
@@ -578,16 +587,19 @@
 <p>​                可以修饰类，表示这个类不可被继承。</p>
 <p>​        finally：异常机制中使用finnaly修饰的代码块，finally代码块中的内容一定会被执行。</p>
 <p>​        finalize：是方法名，它是由java提供的，在垃圾回收对象前执行的方法。它的作用是整理资源或执行其他清理操作。</p>
-<h1 id="9、自我介绍"><a href="#9、自我介绍" class="headerlink" title="9、自我介绍"></a>9、自我介绍</h1><p>​        你好，我叫孔令航，是南京邮电大学2021届毕业生，专业是软件工程（嵌入式培养），非常高兴可以参加贵公司的面试。我在大学学习期间一直以项目为驱动进行学习，保证自己能够掌握前沿的技术。在大学期间，我自己独立完成过一些小项目，也跟着老师做过两个大项目。如果可以的话，我可以先讲讲我在这些项目中做过哪些工作。</p>
-<p>​        我在大二的时候就进入了老师的项目团队。大二期间，我们开发了一个面向中小学的学生管理系统。我在里面的工作主要是学生注册模块，学生登录模块，学生选课模块，还有前端的一些功能。</p>
+<h1 id="9、自我介绍"><a href="#9、自我介绍" class="headerlink" title="9、自我介绍"></a>9、自我介绍</h1><p>​        你好，我叫孔令航，是南京邮电大学2021届毕业生，专业是软件工程，非常高兴可以参加贵公司的面试。我在大学学习期间一直以项目为驱动进行学习，保证自己能够掌握前沿的技术。所以在大二的时候，我就加入了老师的项目组，到目前为止一共参与过两个大型项目，分别是中小学学生管理系统，学校固定资产管理系统，除了这些大项目，我在学习过程中也做过很多小工具，例如ORMapping，聊天室等等。在学习之外，我也有一些自己喜欢做的事情，平时放松的时候喜欢听听歌，看动漫，打游戏，能够保证自己在学习和娱乐之间的平衡。</p>
+<p>​        Hello, my name is Kong linghang. I’m a 2021 graduate of Nanjing University of Posts and telecommunications. I majored in software engineering. I’m very glad to have an interview with your company. During my university study, I have been project driven to ensure that I can master the cutting-edge technology. So when I was a sophomore, I joined the teacher’s project team. So far, I have participated in two large projects, namely, primary and secondary school student management system and school fixed assets management system. In addition to these large projects, I have also made many small tools in the learning process, such as ormapping, chat room, etc. In addition to learning, I also have some things I like to do. When I relax, I like listening to songs, watching cartoons and playing games, which can ensure the balance between learning and entertainment.</p>
+<h2 id="1-详细说说你的项目？"><a href="#1-详细说说你的项目？" class="headerlink" title="1.详细说说你的项目？"></a>1.详细说说你的项目？</h2><p>​        大二期间，我们开发了一个面向中小学的学生管理系统。我在里面的工作主要是学生注册模块，学生登录模块，学生选课模块。</p>
+<p>​        学生注册模块我使用了一个帐号池来解决并发问题，重复刷号问题。学生登录模块做了一个帐号重复登录拦截的功能，在加载登录界面的时候会向服务器发送一个请求，得到一个随机的密钥，通过这个密钥加密帐号和密码，服务器同样通过这个密钥进行解密。学生选课模块我使用AOP技术做了个Application级别的分页，然后使用synchronized对选课操作加锁，解决并发问题。</p>
 <p>​        大三期间又做了个固定资产管理的项目。我负责资产查询模块，资产调拨模块，用户登录模块。</p>
+<p>​        在资产查询模块，因为数据库的数据量很大，读取速度很慢，所以为了提升速度，我让数据一部分一部分读，先读出一部分，当浏览到最后时，再继续读后面的数据。资产调拨模块就是员工申请一个资产的使用，这条记录就会被添加到调拨表里面，管理员那边可以看到调拨表里的请求，进行操作。用户登录模块跟之前那个项目差不多，都是做了个重复登录拦截的功能。</p>
 <h1 id="10、优缺点"><a href="#10、优缺点" class="headerlink" title="10、优缺点"></a>10、优缺点</h1><p>​        优点：做事情认真，细心。比如我和朋友一起敲代码的时候，都是我帮他们改bug。做完一件事情也会反复检查有没有出错的地方。</p>
 <p>​        缺点：性格有点腼腆，遇到不熟的人容易说不上话，但是混熟之后就好了。</p>
 <h1 id="11、与别人相比，你的优势"><a href="#11、与别人相比，你的优势" class="headerlink" title="11、与别人相比，你的优势"></a>11、与别人相比，你的优势</h1><p>​        和本科生相比：我觉得我的优势在于技术更强，并且可以无缝进入企业中工作。</p>
 <p>​        和研究生相比：我觉得我的技术也不输给它们，并且我还比他们更年轻。</p>
 <h1 id="12、高并发的问题"><a href="#12、高并发的问题" class="headerlink" title="12、高并发的问题"></a>12、高并发的问题</h1><p>​        帐号池（开辟缓存区）线程回收学号，线程预防宕机。</p>
 <h1 id="13、数据库的锁机制"><a href="#13、数据库的锁机制" class="headerlink" title="13、数据库的锁机制"></a>13、数据库的锁机制</h1><p>​        <img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200810135216504.png" alt="锁机制"></p>
-<p>  悲观锁适用查询操作多的数据库，乐观锁适用查询操作多的数据库。</p>
+<p>  悲观锁适用增删改操作多的数据库，乐观锁适用查询操作多的数据库。</p>
 <p>  两种常用引擎：表级锁：MyISAM，行级锁：InnoDB</p>
 <h1 id="14、Redis有没有使用过，怎么使用？"><a href="#14、Redis有没有使用过，怎么使用？" class="headerlink" title="14、Redis有没有使用过，怎么使用？"></a>14、Redis有没有使用过，怎么使用？</h1><p>​        当成缓存来用的。   自备份的两种方式。</p>
 <h1 id="15、常用的Linux命令"><a href="#15、常用的Linux命令" class="headerlink" title="15、常用的Linux命令"></a>15、常用的Linux命令</h1><p>​        cd：切换当前目录</p>
@@ -604,7 +616,10 @@
 <h1 id="17、RPC"><a href="#17、RPC" class="headerlink" title="17、RPC"></a>17、RPC</h1><p>​        集群之间的服务通讯</p>
 <h1 id="18、谈谈未来技术的发展趋势"><a href="#18、谈谈未来技术的发展趋势" class="headerlink" title="18、谈谈未来技术的发展趋势"></a>18、谈谈未来技术的发展趋势</h1><p>​        我目前了解到的知识</p>
 <p>​        并不是所有项目适合前后端分离，web合适，别的不合适</p>
-<h1 id="19、死锁，活锁，饥饿"><a href="#19、死锁，活锁，饥饿" class="headerlink" title="19、死锁，活锁，饥饿"></a>19、死锁，活锁，饥饿</h1><p>​    </p>
+<h1 id="19、死锁，活锁，饥饿"><a href="#19、死锁，活锁，饥饿" class="headerlink" title="19、死锁，活锁，饥饿"></a>19、死锁，活锁，饥饿</h1><p>​            死锁是指两个或两个以上的线程，都持有自己的锁，并且都等对方释放锁资源，造成互相等待对方，如果没有外力推动，那么会一直等待下去。</p>
+<p>​        活锁：两个线程都想获取一个锁资源，但是他俩都认为对方的优先级比他高，都在谦让对方，导致他俩都没办法进行下去。</p>
+<p>​        饥饿：一个线程尽管能继续执行，但是被调度器一直忽视，导致一直无法运行。线程T1占用了资源R，T2请求封锁R，T3请求申请R，T1执行结束后调度器同意了T3的请求，T2一直被无视。</p>
+<p>​        不公平锁可以提高吞吐量，但是会不可避免的造成某些线程的饥饿。</p>
 <h1 id="20、SpringMVC，Boot，Cloud"><a href="#20、SpringMVC，Boot，Cloud" class="headerlink" title="20、SpringMVC，Boot，Cloud"></a>20、SpringMVC，Boot，Cloud</h1><p>SpringBoot：微服务，大量简化MVC的配置，约定大于配置。简化SpringMVC开发的部署。</p>
 <p>SpringCloud：管理微服务，提供注册机制，别人从这里拿。</p>
 <h1 id="21、Java基本数据类型和包装类"><a href="#21、Java基本数据类型和包装类" class="headerlink" title="21、Java基本数据类型和包装类"></a>21、Java基本数据类型和包装类</h1><p>​        1字节：byte，boolean</p>
@@ -659,7 +674,9 @@
 <p>​    </p>
 <h1 id="25、集合"><a href="#25、集合" class="headerlink" title="25、集合"></a>25、集合</h1><p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200810193638584.png" alt="集合"></p>
 <p>​        ConcurrentHashMap:线程安全，比hashmap更高效。内部使用了分段锁，主干是个SegMent数组。一个segment数组就是一个子哈希表，对不同的segment数组操作不用考虑锁竞争。</p>
-<h1 id="26、线程"><a href="#26、线程" class="headerlink" title="26、线程"></a>26、线程</h1><p>同步代码块和同步方法：</p>
+<h1 id="26、线程"><a href="#26、线程" class="headerlink" title="26、线程"></a>26、线程</h1><p>线程的生命周期：创建、就绪、运行、阻塞、死亡。</p>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200909094218700.png" alt="线程的生命周期"></p>
+<p>同步代码块和同步方法：</p>
 <p>​        同步方法会给类的所有方法加同一把锁，方法不能同时进行。</p>
 <p>​        同步代码块给特定的方法加特定的锁，别的方法可以同时进行。</p>
 <p>死锁：</p>
@@ -696,7 +713,10 @@
 <h1 id="27、事务"><a href="#27、事务" class="headerlink" title="27、事务"></a>27、事务</h1><p>​        事务就是一组要执行的操作，这组操作要么全部执行完，要么一个都不执行。</p>
 <p>​        四个特性：ACID原子性，一致性，永久性，隔离性。</p>
 <p>​        三种并发问题：脏读，不可重复读，幻读。</p>
-<p>​        四种隔离级别：读未提交，读已提交，可重复度（默认），串行化。</p>
+<p>​        脏读：事务A修改了一个数据，事务B读了这个数据，但是事务A进行回滚操作，那么事务B读的这个数据就是脏读。</p>
+<p>​        不可重复读：事务A一直读一条数据，事务B在A读数据的时候修改了这条数据，那么事务A两次读取的数据不一样，这就是不可重复。</p>
+<p>​        幻读：事务A修改了表中的所有数据，但是B添加了一条数据，事务A发现所有数据中仍有一条未修改的数据，好像出现了幻觉。</p>
+<p>​        四种隔离级别：读未提交，读已提交，可重复读（默认），串行化。</p>
 <hr>
 <p>我还做过使用spring框架对事务的管理</p>
 <p>​        编程式事务管理，声明式事务管理</p>
@@ -800,6 +820,156 @@
 </li>
 </ol>
 <p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200815171303437.png" alt="四种引用"></p>
+<h1 id="43、switch–case"><a href="#43、switch–case" class="headerlink" title="43、switch–case"></a>43、switch–case</h1><p>​        switch后的括号可以放哪些基本数据类型？</p>
+<p>​        1字节：byte</p>
+<p>​        2字节：short，char</p>
+<p>​        4字节：int</p>
+<p>​        8字节：</p>
+<h1 id="44、二叉搜索树"><a href="#44、二叉搜索树" class="headerlink" title="44、二叉搜索树"></a>44、二叉搜索树</h1><p>​        左子树小于根节点</p>
+<p>​        右子树大于根节点</p>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200907154702586.png" alt="二叉搜索树"></p>
+<p>​        查询复杂度：深度越低，复杂度越低  O（logn—n）（二分查找）</p>
+<p><strong>Q/A：给定一颗二叉搜索树，给定树中的一个数，怎么查找它的上一个数？（非遍历）</strong></p>
+<p>​        </p>
+<h1 id="45、进程和线程之间的通讯"><a href="#45、进程和线程之间的通讯" class="headerlink" title="45、进程和线程之间的通讯"></a>45、进程和线程之间的通讯</h1><p>​        进程通讯：消息队列、套接字、共享内存。</p>
+<p>​        线程通讯：wait和notify，定义一个volatile修饰的全局变量控制。</p>
+<h1 id="46、两个项目的数据库设计"><a href="#46、两个项目的数据库设计" class="headerlink" title="46、两个项目的数据库设计"></a>46、两个项目的数据库设计</h1><pre><code>      1. 中小学学生管理系统
+   * studentInfo
+   * professionInfo
+   * courseInfo
+   * scInfo</code></pre>
+<ol start="2">
+<li>固定资产管理<ul>
+<li>userInfo</li>
+<li>assetsInfo</li>
+<li>user-assetsInfo</li>
+<li>applyInfo</li>
+</ul>
+</li>
+</ol>
+<h1 id="47、Spring注解"><a href="#47、Spring注解" class="headerlink" title="47、Spring注解"></a>47、Spring注解</h1><p>​        @Controller（控制层）  @Service（业务层） @Repositony（持久层） @Component（中立的类）  都是注解在类上面，当扫描器扫到这些类时会将它们创建为Bean对象保存在容器中。</p>
+<p>​        @Autowired  @Resource   注解在对象上面，自动为对象装配。</p>
+<p>​        @Autowired 是Spring的注解，默认是按类型装配，想要使用名字装配可以配合@Qualifiter注解</p>
+<p>​        @Resuorce 是J2EE的注解，默认按名字装配，其次是类型装配（推荐使用，解耦）</p>
+<h1 id="48、MVC的注解"><a href="#48、MVC的注解" class="headerlink" title="48、MVC的注解"></a>48、MVC的注解</h1><p>​        @Controller注解表示扫描到这个类时，会自动把它加载到Spring的Bean工厂，并且对其实例化。</p>
+<p>​        @RequestMapping就是一个映射路径，让我们访问到相应的方法。</p>
+<p>​        @Response就是让返回的东西不走视图解析器，而是通过json或基本数据类型返回。</p>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200909093952538.png" alt="Spring注解"></p>
+<h1 id="49、XML解析"><a href="#49、XML解析" class="headerlink" title="49、XML解析"></a>49、XML解析</h1><pre><code> 四种解析方式：SAX，DOM，JDOM，DOM4J</code></pre>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/blog\source_posts\学习笔记\image-20200909100751356.png" alt="SAX VS DOM"></p>
+<p>​        流程：获取xml文件的位置，得到根节点，遍历子节点。</p>
+<h1 id="50、-双亲委托机制"><a href="#50、-双亲委托机制" class="headerlink" title="50、 双亲委托机制"></a>50、 双亲委托机制</h1><p>​        核心思想：从底向上检查类是否被加载，从顶向下尝试加载类</p>
+<p><img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200909101907095.png" alt="双亲委托机制"></p>
+<p>具体加载过程：</p>
+<ol>
+<li>当APP ClassLoader加载一个class时，它首先不会自己去尝试加载这个类，而是把请求委派给父类加载器Extension去完成。</li>
+<li>Extension也不会尝试去加载，会委派给Bootstrap去完成。</li>
+<li>如果Bootstrap加载失败，会让extension加载。</li>
+<li>extension加载失败，会给app加载。app加载也失败，会报出异常ClassNotFountException</li>
+</ol>
+<h1 id="51、集合的扩容"><a href="#51、集合的扩容" class="headerlink" title="51、集合的扩容"></a>51、集合的扩容</h1><ol>
+<li>ArrayList：默认容量为10，扩容1.5倍。   10  15  22  33 。。</li>
+<li>Vector：默认容量为10，扩容2倍。10 20 40 80。。</li>
+<li>Stack：继承于Vector，所以也是2倍速度扩容。</li>
+</ol>
+<hr>
+<ol>
+<li><p>HashMap：默认容量16，加载因子0.75，扩容2倍，最大容量2的30次方</p>
+</li>
+<li><p>HashTable：默认容量11，加载因子0.75，扩容2倍加1</p>
+</li>
+</ol>
+<h1 id="52、JDK1-8特性"><a href="#52、JDK1-8特性" class="headerlink" title="52、JDK1.8特性"></a>52、JDK1.8特性</h1><ol>
+<li><p>接口中可以使用关键字defult，static定义方法并实现方法</p>
+</li>
+<li><p>lambda表达式。（使用lambda表达式必须有接口，并且接口只能有一个抽象方法。必须具有上下文推断）</p>
+</li>
+<li><p>函数式接口@FunctionalInterface。当接口的上面有这个时，这个接口只能定义一个抽象方法。</p>
+</li>
+<li><p>增加了日期类，线程安全LocalDateTime</p>
+</li>
+<li><p>Stream API 。流是一个集合元素的函数模型，它并不是集合，也不是数据结构，其本身不存储任何值。可以传入集合数组等，不改变原值，返回出持有结果的新流。</p>
+</li>
+<li><p>HashMap。  采用数据加链表加红黑树的数据结构。采用尾插法。</p>
+</li>
+<li><p>ConcurrentHashMap。采用CAS算法解决并发问题，而不是锁分段。数据结构也变为数组加链表加红黑树。</p>
+<p>​    CAS算发就是compare and swap 比较交换算法。是乐观锁的实现，可以使用非阻塞方式来代替锁。在并发包下常被用到。会造成ABA问题。通过本地接口实现。</p>
+<p>​    循环时间长，开销很大。</p>
+<p>​    只能保证一个共享变量的原子操作。</p>
+<p>​    ABA问题：线程A查询过一个数据为100，线程B在线程A下一次查询之前把数据-50又+50，线程A查询还是100.但期间这个数据被修改过。</p>
+<p>​    通过加版本号的方式解决。</p>
+</li>
+</ol>
+<h1 id="53、Get和Post的区别"><a href="#53、Get和Post的区别" class="headerlink" title="53、Get和Post的区别"></a>53、Get和Post的区别</h1><p>​      他俩都是HTTP请求的方式。Http协议是基于TCP/IP协议的，所以这两种请求方式本质上是没有区别的。</p>
+<p>​        网上的答案：</p>
+<ol>
+<li><p>Get的请求数据是拼接在URL后面的，Post的请求数据是放在请求体中的。</p>
+</li>
+<li><p>Get效率比Post高。</p>
+</li>
+<li><p>Post安全性高。</p>
+</li>
+<li><p>Get请求数据有限制，因为URL的长度，Post无限制</p>
+</li>
+<li><p>Get的参数的数据类型必须数ASCII字符，Post无限制</p>
+<p>​    但是，Get和Post都是基于TCP链接传输的，所以本质上是没有区别的。</p>
+<p>​    这些只是HTTP提出的行为准则。Get请求也可以在请求体放数据，Post也可以在url后拼接数据。但是这么做有的服务器会全部读出，有的服务器则会忽略。大多数浏览器都会限制url的长度，所以会出现请求参数的限制。</p>
+</li>
+</ol>
+<p>​      Get和Post本质上都是TCP链接，并无差别。但是因为HTTP的规定和浏览器、服务器的限制，导致它们在实际过程中出现不同。</p>
+<p>​        Get请求会产生一个TCP数据包，Post请求会产生两个TCP数据包。</p>
+<p>​        Get会把header和data一起发送，返回数据浏览器会响应200.</p>
+<p>​        Post会分两次发送，第一次header，响应100继续，第二次data，响应200</p>
+<h1 id="HTTP响应码"><a href="#HTTP响应码" class="headerlink" title="HTTP响应码"></a>HTTP响应码</h1><ul>
+<li>100：响应正常，可以继续发送请求</li>
+<li>200：请求成功。</li>
+<li>301：没有请求成功，必须采取进一步的动作。</li>
+<li>404：请求资源不存在。</li>
+<li>500：服务器内部错误，无法完成请求。</li>
+</ul>
+<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><p>使用@interface声明一个注解。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Info</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"asd"</span><span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> <span class="token function">isDelete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>使用元注解规定范围。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Documented</span>            <span class="token comment" spellcheck="true">//该注解标记的元素可以被文档化</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">//注解的生命周期</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>ElementType<span class="token punctuation">.</span>FIELD<span class="token punctuation">,</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//可以应用的Java元素类型</span>
+<span class="token annotation punctuation">@Inherited</span>            <span class="token comment" spellcheck="true">//该类的子类同样有注解</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Info</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"asd"</span><span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> <span class="token function">isDelete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>写一个类，加注解</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Info</span><span class="token punctuation">(</span>isDelete <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> 
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> isDelete<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>Main中通过反射测试注解</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Class <span class="token class-name">clz</span> <span class="token operator">=</span> person<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>clz<span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>Info<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"存在注解"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Info info <span class="token operator">=</span> <span class="token punctuation">(</span>Info<span class="token punctuation">)</span>clz<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>Info<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//获取该对象上Info类型的注解</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>info<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"   "</span><span class="token operator">+</span>info<span class="token punctuation">.</span><span class="token function">isDelete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"不存在"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h1 id="RPC负载均衡"><a href="#RPC负载均衡" class="headerlink" title="RPC负载均衡"></a>RPC负载均衡</h1><p>​        一个服务有多个请求地址的时候，会返回多个地址。RPC负载均衡就是我们要给哪台机器发出请求。</p>
+<ul>
+<li>随机挑选</li>
+<li>轮询</li>
+<li>LRU</li>
+<li>LFU </li>
+</ul>
 
             </div>
             <hr/>
@@ -1344,7 +1514,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.4k</span>&nbsp;字
+                class="white-color">84.5k</span>&nbsp;字
             
             
             

@@ -361,7 +361,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.5k
+                    7.8k
                 </div>
                 
 
@@ -486,11 +486,27 @@
 <p><img src="/2019/12/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/image-20200801163707079.png" alt="代号"></p>
 <p>​        <strong>TCP连接建立过程：</strong>首先Client端发送连接请求报文，Server段接受连接后回复ACK报文，并为这次连接分配资源。Client端接收到ACK报文后也向Server段发生ACK报文，并分配资源，这样TCP连接就建立了。</p>
 <p>​        <strong>TCP连接断开过程：</strong>假设Client端发起中断连接请求，也就是发送FIN报文。Server端接到FIN报文后，意思是说”我Client端没有数据要发给你了”，但是如果你还有数据没有发送完成，则不必急着关闭Socket，可以继续发送数据。所以你先发送ACK，”告诉Client端，你的请求我收到了，但是我还没准备好，请继续你等我的消息”。这个时候Client端就进入FIN_WAIT状态，继续等待Server端的FIN报文。当Server端确定数据已发送完成，则向Client端发送FIN报文，”告诉Client端，好了，我这边数据发完了，准备好关闭连接了”。Client端收到FIN报文后，”就知道可以关闭连接了，但是他还是不相信网络，怕Server端不知道要关闭，所以发送ACK后进入TIME_WAIT状态，如果Server端没有收到ACK则可以重传。”，Server端收到ACK后，”就知道可以断开连接了”。Client端等待了2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，我Client端也可以关闭连接了。Ok，TCP连接就这样关闭了！</p>
+<p><img src="/2019/12/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/image-20200909204252851.png" alt="四次挥手"></p>
 <p>​        <strong>为什么要三次握手？</strong></p>
 <p>​        在只有两次”握手”的情形下，假设Client想跟Server建立连接，但是却因为中途连接请求的数据报丢失了，故Client端不得不重新发送一遍；这个时候Server端仅收到一个连接请求，因此可以正常的建立连接。但是，有时候Client端重新发送请求不是因为数据报丢失了，而是有可能数据传输过程因为网络并发量很大在某结点被阻塞了，这种情形下Server端将先后收到2次请求，并持续等待两个Client请求向他发送数据…问题就在这里，Cient端实际上只有一次请求，而Server端却有2个响应，极端的情况可能由于Client端多次重新发送请求数据而导致Server端最后建立了N多个响应在等待，因而造成极大的资源浪费！所以，”三次握手”很有必要！</p>
+<ul>
+<li><p>首要原因是防止旧的重复连接造成初始化混乱。</p>
+</li>
+<li><p>同步双方初始化序列号。（四次握手也可以，但是可以简化为3次握手）</p>
+</li>
+<li><p>避免资源浪费  客户端发送的SYN被阻塞，收不到ACK，就又会发出SYN，造成资源浪费。</p>
+<p>​    <strong>SYN FLOOD？</strong></p>
+<p>​    是发生在三次握手期间的攻击。用户向服务器发送SYN后，服务器要返回SYN+ACK，但是如果用户下线，那么服务器就无法收到ACK，就会一直维持这个连接一段时间。如果有大量这样的操作，服务器的CPU就会被占满，导致崩溃。</p>
+<p>​    设置断开这种半连接的时间。</p>
+</li>
+</ul>
 <p>​        <strong>为什么要四次挥手？</strong></p>
+<p>​        主动关闭连接的，才有TIME_WAIT状态。</p>
+<p>​        TIME_WAIT的时间是2MSL，Linux系统中固定为60s。</p>
 <p>​        试想一下，假如现在你是客户端你想断开跟Server的所有连接该怎么做？第一步，你自己先停止向Server端发送数据，并等待Server的回复。但事情还没有完，虽然你自身不往Server发送数据了，但是因为你们之前已经建立好平等的连接了，所以此时他也有主动权向你发送数据；故Server端还得终止主动向你发送数据，并等待你的确认。其实，说白了就是保证双方的一个合约的完整执行！</p>
 <p>​        使用TCP的协议：FTP（文件传输协议）、Telnet（远程登录协议）、SMTP（简单邮件传输协议）、POP3（和SMTP相对，用于接收邮件）、HTTP协议等。</p>
+<p>​        <strong>为什么需要TIME_WAIT?</strong></p>
+<p>​        保证双方都可以安全的断开连接，并且不会造成数据丢失。</p>
 <h1 id="8、UDP协议"><a href="#8、UDP协议" class="headerlink" title="8、UDP协议"></a>8、UDP协议</h1><p>​        <strong>UDP用户数据报协议，是面向无连接的通讯协议，UDP数据包括目的端口号和源端口号信息，由于通讯不需要连接，所以可以实现广播发送。</strong></p>
 <p>​        UDP通讯时不需要接收方确认，属于不可靠的传输，可能会出现丢包现象，实际应用中要求程序员编程验证。</p>
 <p>​        UDP与TCP位于同一层，但它不管数据包的顺序、错误或重发。因此，UDP不被应用于那些使用虚电路的面向连接的服务，UDP主要用于那些面向查询—应答的服务，例如NFS。相对于FTP或Telnet，这些服务需要交换的信息量较小。</p>
@@ -565,6 +581,13 @@
 <li>3）客户端的网络层不用关系应用层或者传输层的东西，主要做的是通过查找路由表确定如何到达服务器，期间可能经过多个路由器，这些都是由路由器来完成的工作，不作过多的描述，无非就是通过查找路由表决定通过那个路径到达服务器。</li>
 <li>4）客户端的链路层，包通过链路层发送到路由器，通过邻居协议查找给定IP地址的MAC地址，然后发送ARP请求查找目的地址，如果得到回应后就可以使用ARP的请求应答交换的IP数据包现在就可以传输了，然后发送IP数据包到达服务器的地址。</li>
 </ul>
+<hr>
+<ol>
+<li>浏览器先查缓存，操作系统查缓存，本地域名服务器查缓存，如果有，从下到上传递ip地址并记录缓存，没有，本地域名服务器迭代查询，发送请求查询ip地址。</li>
+<li>通过ip地址三次握手建立连接</li>
+<li>发送HTTP请求，服务器响应，返回页面</li>
+<li>四次挥手</li>
+</ol>
 <h1 id="15、参考资料"><a href="#15、参考资料" class="headerlink" title="15、参考资料"></a>15、参考资料</h1><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/maybe2030/p/4781555.html">http://www.cnblogs.com/maybe2030/p/4781555.html</a></p>
 
             </div>
@@ -1114,7 +1137,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.4k</span>&nbsp;字
+                class="white-color">84.5k</span>&nbsp;字
             
             
             

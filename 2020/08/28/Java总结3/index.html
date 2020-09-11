@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.9k
+                    7.5k
                 </div>
                 
 
@@ -794,6 +794,7 @@
 </ul>
 <p><strong>工作流程</strong></p>
 <p>​        首先程序在执行之前先要把 Java 代码（.java）转换成字节码（.class），JVM 通过类加载器（ClassLoader）把字节码加载到内存中，但字节码文件是 JVM 的一套指令集规范，并不能直接交给底层操作系统去执行，因此需要特定的命令解析器执行引擎（Execution Engine） 将字节码翻译成底层机器码，再交由 CPU 去执行，CPU 执行的过程中需要调用本地库接口（Native Interface）来完成整个程序的运行。</p>
+<p><img src="/2020/08/28/Java%E6%80%BB%E7%BB%933/image-20200909094609119.png" alt="JVM运行流程"></p>
 <p><strong>JVM内存划分</strong></p>
 <ul>
 <li>堆</li>
@@ -914,6 +915,157 @@
             length<span class="token operator">--</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>​        定义对象间一对多的关系，当一个对象的状态改变时，所有依赖于它的对象都会得到通知自动更新。</p>
+<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>​        将一类的接口转换为客户需要的另外一个接口，适配器模式可以让原本接口不兼容导致不能一起工作的类一起工作。</p>
+<h1 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h1><p><img src="/2020/08/28/Java%E6%80%BB%E7%BB%933/image-20200901155953489.png" alt="遍历"></p>
+<p>abcdefghk  根左右</p>
+<p>bdcaehgkf  左根右</p>
+<p>dcbhkgfea   左右根</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">BitTree</span>
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> data<span class="token punctuation">;</span>
+    BitTree lchild<span class="token punctuation">;</span>
+    BitTree rchild<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">BitTree</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+        lchild <span class="token operator">=</span> rchild <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//创建二叉树</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> BitTree <span class="token function">createBitTree1</span><span class="token punctuation">(</span>Scanner reader<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        BitTree root <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> m<span class="token operator">=</span>reader<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>m<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BitTree</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span>lchild <span class="token operator">=</span> <span class="token function">createBitTree1</span><span class="token punctuation">(</span>reader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            root<span class="token punctuation">.</span>rchild <span class="token operator">=</span> <span class="token function">createBitTree1</span><span class="token punctuation">(</span>reader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//递归遍历</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>BitTree root<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//前序</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//中序</span>
+        <span class="token comment" spellcheck="true">//System.out.println(root.data);</span>
+        <span class="token function">print</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//后序</span>
+        <span class="token comment" spellcheck="true">//System.out.println(root.data);</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//非递归遍历</span>
+    <span class="token comment" spellcheck="true">//前序</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printByPre</span><span class="token punctuation">(</span>BitTree root<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token operator">==</span>null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        Stack<span class="token operator">&lt;</span>BitTree<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span>BitTree<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            root <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild <span class="token operator">!=</span> null<span class="token punctuation">)</span> stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild <span class="token operator">!=</span> null<span class="token punctuation">)</span> stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//中序</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printByMid</span><span class="token punctuation">(</span>BitTree root<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        Stack<span class="token operator">&lt;</span>BitTree<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span>BitTree<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            root <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token operator">==</span>null<span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>rchild <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> stack<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>root<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild <span class="token operator">!=</span>null<span class="token punctuation">)</span> stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//后序</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printByBack</span><span class="token punctuation">(</span>BitTree root<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span>null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        Stack<span class="token operator">&lt;</span>BitTree<span class="token operator">></span> stack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span>BitTree<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        BitTree visited <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            root <span class="token operator">=</span> stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild<span class="token operator">==</span>null <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>rchild <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild <span class="token operator">==</span> visited <span class="token operator">&amp;&amp;</span> root<span class="token punctuation">.</span>rchild <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                    <span class="token operator">||</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild <span class="token operator">==</span> visited<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                visited <span class="token operator">=</span> root<span class="token punctuation">;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild <span class="token operator">!=</span> null<span class="token punctuation">)</span> stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>rchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild <span class="token operator">!=</span> null<span class="token punctuation">)</span> stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>lchild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Node</span>
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> data<span class="token punctuation">;</span>
+    Node next<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> m<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> m<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//头插</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Node <span class="token function">createNodeByHead</span><span class="token punctuation">(</span>Scanner reader<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Node head <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> m <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>m<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Node p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+            head <span class="token operator">=</span> p<span class="token punctuation">;</span>
+            m <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//尾插</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Node <span class="token function">createNodeByTail</span><span class="token punctuation">(</span>Scanner reader<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        Node head <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Node tail <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> m <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>m<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Node p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>head<span class="token operator">==</span>null<span class="token punctuation">)</span>    head<span class="token operator">=</span>tail<span class="token operator">=</span>p<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+            <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                tail<span class="token punctuation">.</span>next <span class="token operator">=</span> p<span class="token punctuation">;</span>
+                tail <span class="token operator">=</span> p<span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            m <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -1482,7 +1634,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.4k</span>&nbsp;字
+                class="white-color">84.5k</span>&nbsp;字
             
             
             

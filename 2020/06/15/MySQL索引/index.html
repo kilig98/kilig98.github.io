@@ -404,7 +404,7 @@
 <h1 id="3、索引的分类"><a href="#3、索引的分类" class="headerlink" title="3、索引的分类"></a>3、索引的分类</h1><p>​        <strong>主键索引、唯一索引、普通索引、全文索引、组合索引</strong></p>
 <ol>
 <li>主键索引：根据主键做索引，不允许重复，不允许空值。</li>
-<li>唯一索引：用来建立索引的列的值必须是唯一的，运行空值。</li>
+<li>唯一索引：用来建立索引的列的值必须是唯一的，允许空值。</li>
 <li>普通索引：用表中的普通列来建索引，没有任何限制。</li>
 <li>全文索引：用大文本对象的列构建的索引。</li>
 <li>组合索引：用多个列组合成的索引，这些列都不能有空值。</li>
@@ -423,7 +423,7 @@
 </ol>
 <p>​      BTree是平衡搜索多叉树。每个非叶子结点由n-1个key和n个指针组成，d(度)&lt;=n&lt;=2d，非叶子结点的key都是由[key，data]二元组，key表示作为索引的键，data为键值所在行的数据。</p>
 <p><img src="/2020/06/15/MySQL%E7%B4%A2%E5%BC%95/blog\source_posts\MySQL索引\image-20200816102138915.png" alt="BTree"></p>
-<p>​      在BTree的机构下，可以使用二分查找的查找方式，查找复杂度为h*log(n)，一般来说树的高度是很小的，一般为3左右，因此BTree是一种非常搞笑的查找结构。</p>
+<p>​      在BTree的机构下，可以使用二分查找的查找方式，查找复杂度为h*log(n)，一般来说树的高度是很小的，一般为3左右，因此BTree是一种非常高效的查找结构。</p>
 <ol start="4">
 <li><p><strong>B+Tree索引</strong></p>
 <p>B+Tree是BTree的一个变种。</p>
@@ -1057,7 +1057,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.4k</span>&nbsp;字
+                class="white-color">84.5k</span>&nbsp;字
             
             
             
