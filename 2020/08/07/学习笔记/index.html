@@ -361,7 +361,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.8k
+                    11.1k
                 </div>
                 
 
@@ -560,7 +560,7 @@
 </ol>
 <hr>
 <p>谈一谈SpringMVC？</p>
-<p>​        流程：前端发出请求给Controller，Controller通过请求里的url到handlermapping中找handler，找到handler后发送给handleradpter执行，返回ModleAndView对象，然后交给视图解析器得到页面返回。但是现在我们都不走视图解析器这一套了，使用@Respnse注解，要求直接返回json或者基本数据类型。</p>
+<p>​        流程：前端发出请求给Controller，Controller通过请求里的url到handlermapping中找handler，找到handler后发送给handleradpter执行，返回ModleAndView对象，然后交给视图解析器得到页面返回。但是现在我们都不走视图解析器这一套了，使用@Respnsebody注解，要求直接返回json或者基本数据类型。</p>
 <hr>
 <p>​        当前端发送一个请求给控制器时，控制器会根据请求来的URL到HandleMapping中查找。HandleMapping中有两种映射方式。</p>
 <p>​        第一种是BeanNameMapping，一个URL对应一个类的全限定名。如果URL在这里查到的话，就可以根据全限定名得到字节码，实例化一个对象，然后用接口回调技术去调用doGet或doPost方法。</p>
@@ -590,7 +590,7 @@
 <h1 id="9、自我介绍"><a href="#9、自我介绍" class="headerlink" title="9、自我介绍"></a>9、自我介绍</h1><p>​        你好，我叫孔令航，是南京邮电大学2021届毕业生，专业是软件工程，非常高兴可以参加贵公司的面试。我在大学学习期间一直以项目为驱动进行学习，保证自己能够掌握前沿的技术。所以在大二的时候，我就加入了老师的项目组，到目前为止一共参与过两个大型项目，分别是中小学学生管理系统，学校固定资产管理系统，除了这些大项目，我在学习过程中也做过很多小工具，例如ORMapping，聊天室等等。在学习之外，我也有一些自己喜欢做的事情，平时放松的时候喜欢听听歌，看动漫，打游戏，能够保证自己在学习和娱乐之间的平衡。</p>
 <p>​        Hello, my name is Kong linghang. I’m a 2021 graduate of Nanjing University of Posts and telecommunications. I majored in software engineering. I’m very glad to have an interview with your company. During my university study, I have been project driven to ensure that I can master the cutting-edge technology. So when I was a sophomore, I joined the teacher’s project team. So far, I have participated in two large projects, namely, primary and secondary school student management system and school fixed assets management system. In addition to these large projects, I have also made many small tools in the learning process, such as ormapping, chat room, etc. In addition to learning, I also have some things I like to do. When I relax, I like listening to songs, watching cartoons and playing games, which can ensure the balance between learning and entertainment.</p>
 <h2 id="1-详细说说你的项目？"><a href="#1-详细说说你的项目？" class="headerlink" title="1.详细说说你的项目？"></a>1.详细说说你的项目？</h2><p>​        大二期间，我们开发了一个面向中小学的学生管理系统。我在里面的工作主要是学生注册模块，学生登录模块，学生选课模块。</p>
-<p>​        学生注册模块我使用了一个帐号池来解决并发问题，重复刷号问题。学生登录模块做了一个帐号重复登录拦截的功能，在加载登录界面的时候会向服务器发送一个请求，得到一个随机的密钥，通过这个密钥加密帐号和密码，服务器同样通过这个密钥进行解密。学生选课模块我使用AOP技术做了个Application级别的分页，然后使用synchronized对选课操作加锁，解决并发问题。</p>
+<p>​        学生注册模块我使用了一个帐号池来解决并发问题，重复刷号问题。学生登录模块做了一个帐号重复登录拦截的功能，还采用RSA加密算法保证帐号登录的安全性。学生选课模块我使用AOP技术做了个Application级别的分页，然后使用synchronized对选课操作加锁，解决并发问题。</p>
 <p>​        大三期间又做了个固定资产管理的项目。我负责资产查询模块，资产调拨模块，用户登录模块。</p>
 <p>​        在资产查询模块，因为数据库的数据量很大，读取速度很慢，所以为了提升速度，我让数据一部分一部分读，先读出一部分，当浏览到最后时，再继续读后面的数据。资产调拨模块就是员工申请一个资产的使用，这条记录就会被添加到调拨表里面，管理员那边可以看到调拨表里的请求，进行操作。用户登录模块跟之前那个项目差不多，都是做了个重复登录拦截的功能。</p>
 <h1 id="10、优缺点"><a href="#10、优缺点" class="headerlink" title="10、优缺点"></a>10、优缺点</h1><p>​        优点：做事情认真，细心。比如我和朋友一起敲代码的时候，都是我帮他们改bug。做完一件事情也会反复检查有没有出错的地方。</p>
@@ -601,7 +601,7 @@
 <h1 id="13、数据库的锁机制"><a href="#13、数据库的锁机制" class="headerlink" title="13、数据库的锁机制"></a>13、数据库的锁机制</h1><p>​        <img src="/2020/08/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200810135216504.png" alt="锁机制"></p>
 <p>  悲观锁适用增删改操作多的数据库，乐观锁适用查询操作多的数据库。</p>
 <p>  两种常用引擎：表级锁：MyISAM，行级锁：InnoDB</p>
-<h1 id="14、Redis有没有使用过，怎么使用？"><a href="#14、Redis有没有使用过，怎么使用？" class="headerlink" title="14、Redis有没有使用过，怎么使用？"></a>14、Redis有没有使用过，怎么使用？</h1><p>​        当成缓存来用的。   自备份的两种方式。</p>
+<h1 id="14、Redis有没有使用过，怎么使用？"><a href="#14、Redis有没有使用过，怎么使用？" class="headerlink" title="14、Redis有没有使用过，怎么使用？"></a>14、Redis有没有使用过，怎么使用？</h1><p>​        当成缓存来用的。   自备份的两种方式RDB，AOF。</p>
 <h1 id="15、常用的Linux命令"><a href="#15、常用的Linux命令" class="headerlink" title="15、常用的Linux命令"></a>15、常用的Linux命令</h1><p>​        cd：切换当前目录</p>
 <p>​        pwd：显示当前目录</p>
 <p>​        ls：查看当前目录下的文件</p>
@@ -609,6 +609,9 @@
 <p>​        cat：查看文件内容</p>
 <p>​        cp：复制文件</p>
 <p>​        chmod：修改文件权限</p>
+<p>​        rm -rf /……  删除文件夹</p>
+<p>​        rm -f/…..  删除文件</p>
+<p>​        tail -n 100 Config.log  查看日志的后一百行</p>
 <h1 id="16、Spring常用注解"><a href="#16、Spring常用注解" class="headerlink" title="16、Spring常用注解"></a>16、Spring常用注解</h1><p>​        @Controller, @Service, @Repository,@Component，@Autowired，@Resource</p>
 <p>​        @Autowired：Spring的注解，自动装配，默认按类型装配。</p>
 <p>​        @Resoure：J2EE的注解，默认按name装配。</p>
@@ -893,7 +896,7 @@
 <li><p>HashMap。  采用数据加链表加红黑树的数据结构。采用尾插法。</p>
 </li>
 <li><p>ConcurrentHashMap。采用CAS算法解决并发问题，而不是锁分段。数据结构也变为数组加链表加红黑树。</p>
-<p>​    CAS算发就是compare and swap 比较交换算法。是乐观锁的实现，可以使用非阻塞方式来代替锁。在并发包下常被用到。会造成ABA问题。通过本地接口实现。</p>
+<p>​    CAS算法就是compare and swap 比较交换算法。是乐观锁的实现，可以使用非阻塞方式来代替锁。在并发包下常被用到。会造成ABA问题。通过本地接口实现。</p>
 <p>​    循环时间长，开销很大。</p>
 <p>​    只能保证一个共享变量的原子操作。</p>
 <p>​    ABA问题：线程A查询过一个数据为100，线程B在线程A下一次查询之前把数据-50又+50，线程A查询还是100.但期间这个数据被修改过。</p>
@@ -920,14 +923,14 @@
 <p>​        Get请求会产生一个TCP数据包，Post请求会产生两个TCP数据包。</p>
 <p>​        Get会把header和data一起发送，返回数据浏览器会响应200.</p>
 <p>​        Post会分两次发送，第一次header，响应100继续，第二次data，响应200</p>
-<h1 id="HTTP响应码"><a href="#HTTP响应码" class="headerlink" title="HTTP响应码"></a>HTTP响应码</h1><ul>
+<h1 id="54、HTTP响应码"><a href="#54、HTTP响应码" class="headerlink" title="54、HTTP响应码"></a>54、HTTP响应码</h1><ul>
 <li>100：响应正常，可以继续发送请求</li>
 <li>200：请求成功。</li>
 <li>301：没有请求成功，必须采取进一步的动作。</li>
 <li>404：请求资源不存在。</li>
 <li>500：服务器内部错误，无法完成请求。</li>
 </ul>
-<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><p>使用@interface声明一个注解。</p>
+<h1 id="55、自定义注解"><a href="#55、自定义注解" class="headerlink" title="55、自定义注解"></a>55、自定义注解</h1><p>使用@interface声明一个注解。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Info</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"asd"</span><span class="token punctuation">;</span>
     <span class="token keyword">boolean</span> <span class="token function">isDelete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -963,13 +966,18 @@
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"不存在"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
-<h1 id="RPC负载均衡"><a href="#RPC负载均衡" class="headerlink" title="RPC负载均衡"></a>RPC负载均衡</h1><p>​        一个服务有多个请求地址的时候，会返回多个地址。RPC负载均衡就是我们要给哪台机器发出请求。</p>
+<h1 id="56、RPC负载均衡"><a href="#56、RPC负载均衡" class="headerlink" title="56、RPC负载均衡"></a>56、RPC负载均衡</h1><p>​        一个服务有多个请求地址的时候，会返回多个地址。RPC负载均衡就是我们要给哪台机器发出请求。</p>
 <ul>
 <li>随机挑选</li>
 <li>轮询</li>
 <li>LRU</li>
 <li>LFU </li>
 </ul>
+<h1 id="57、数据库和缓存数据不一致"><a href="#57、数据库和缓存数据不一致" class="headerlink" title="57、数据库和缓存数据不一致"></a>57、数据库和缓存数据不一致</h1><p>​        并发量低的情况下：进行更新操作时，删缓存，再去改数据库，更新缓存，返回值。</p>
+<p>​        并发量高的情况：</p>
+<p>​        场景：有一个更新操作想要把商品数100改成99，先删除缓存，但是在没有更新好的情况下，另一个查询操作查数据，查缓存没有，再查数据库100，写入缓存，返回。但是更新好之后数据库是99，缓存是100.</p>
+<p>​        解决方案：通过队列解决这个问题，创建任意个数的队列，如20个，然后将商品ID去hash值，向队列个数取模，将更新操作放入队列中，等更新操作完成后移除队列。此时来一个查询操作，可以先判断队列中有没有更新操作，如果有，就放到队列中，没有就直接查。</p>
+<p>​        优化：如果有多个相同的查询操作，后面的操作就不用加到队列里，让他们循环读缓存，如果查询一段时间后缓存中还是没有，那就直接读数据库。</p>
 
             </div>
             <hr/>
@@ -1514,7 +1522,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.5k</span>&nbsp;字
+                class="white-color">86.2k</span>&nbsp;字
             
             
             

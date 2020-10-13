@@ -493,7 +493,7 @@ Integer b <span class="token operator">=</span> <span class="token number">128</
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>iMax <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>A:2147483648  B:-2147483648  C:程序报错        D:以上都不是</p>
 <p>​    答案是B。整数在内存中是以补码的形式存在的，MAX_VALUE是2^31-1 = 2147483647</p>
-<p>​    加1后最高位变成1，所以答案为-2^31+1。</p>
+<p>​    加1后最高位变成1，所以答案为-2^31。</p>
 <p><strong>Q/A:  如下图输出什么?</strong></p>
 <p><img src="/2020/08/18/Java%E6%80%BB%E7%BB%93/image-20200820103057214.png" alt="image-20200820103057214"></p>
 <p>​        因为set里存储的是Short类型，（i-1）会将Short自动转换为Integer型。所以remove找不到Integer类型的数据，就一个也不删除。</p>
@@ -1896,7 +1896,7 @@ Iterator<span class="token operator">&lt;</span>Map<span class="token punctuatio
 <p><strong>非阻塞队列</strong></p>
 <ol>
 <li><p>ConcurrentLinkedQueue</p>
-<p>​    ConcurrentLinkedQueue是一个基于链表的无界线程安全队列。它采用先进先出的规则对节点进行排序。它的出队入队操作都使用CAS（Compare And Set）更新，这样允许多个线程并发执行，并且不会因为加锁而阻塞线程，使得并发性能更好。</p>
+<p>​    ConcurrentLinkedQueue是一个基于链表的无界线程安全队列。它采用先进先出的规则对节点进行排序。它的出队入队操作都使用CAS（Compare And Swap）更新，这样允许多个线程并发执行，并且不会因为加锁而阻塞线程，使得并发性能更好。</p>
 <pre class=" language-java"><code class="language-java">ConcurrentLinkedQueue concurrentLinkedQueue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentLinkedQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 concurrentLinkedQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Dog"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 concurrentLinkedQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Cat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2508,7 +2508,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.5k</span>&nbsp;字
+                class="white-color">86.2k</span>&nbsp;字
             
             
             

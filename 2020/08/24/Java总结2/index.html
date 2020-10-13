@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.1k
+                    9.2k
                 </div>
                 
 
@@ -982,7 +982,7 @@ lock<span class="token punctuation">.</span><span class="token function">tryLock
 <p>​    悲观锁认为对于同一个数据的并发操作，一定会发生修改，哪怕没有被修改，也会认为被修改了。因此对于同一个数据的并发操作，悲观锁采取加锁的形式，悲观的认为，不加锁的并发操作一定会出问题。</p>
 </li>
 <li><p>乐观锁</p>
-<p>​    乐观锁在获取数据时，并不担心数据被修改，每次获取数据时也不会加锁，只是在更新时，通过判断现有的数据是否和原数据一致来判断数据是否被其他线程操作，如果没被其他线程修改，则进行数据更新，如果被其他线程修改则不进行数据更新。</p>
+<p>​    乐观锁在获取数据时，并不担心数据被修改，每次获取数据时也不会加锁，只是在更新时，通过判断现有的数据是否和原数据一致来判断数据是否被其他线程操作，如果没被其他线程修改，则不进行数据更新，如果被其他线程修改则进行数据更新。</p>
 </li>
 </ul>
 <p><strong>公平锁和非公平锁</strong></p>
@@ -1012,6 +1012,10 @@ lock<span class="token punctuation">.</span><span class="token function">tryLock
 <p>​        可重入锁指的是该线程获取了该锁之后，可以无限次的进入该锁锁住的代码。</p>
 <p><strong>自旋锁</strong></p>
 <p>​        自旋锁是指尝试获取锁的线程不会立即阻塞，而是采用循环的方式去获取锁，这样的好处是减少线程上下文切换的损耗，缺点是会消耗CPU。</p>
+<p><strong>偏向锁</strong></p>
+<p>​        偏向锁会偏向于第一个获得它的线程。为了让线程获得锁的代价更低。</p>
+<p><strong>MySQL间隙锁</strong></p>
+<p>​        间隙锁是一个在索引记录之间的间隙上的锁。是innodb在可重复度提交下为了解决幻读问题引入的锁机制。它是为了保证在某个间隙下的数据在锁定情况下不会发生任何变化。</p>
 <p><strong>CAS和ABA</strong></p>
 <p>​        CAS(Compare and Swap)比较并交换，是一种乐观锁的实现，是用非阻塞算法来代替锁定，java.utils.concurrent包下的AtomicInteger 就是借助CAS来实现的。</p>
 <p>​        著名的ABA问题就是CAS引起的。</p>
@@ -1616,7 +1620,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.5k</span>&nbsp;字
+                class="white-color">86.2k</span>&nbsp;字
             
             
             
